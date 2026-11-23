@@ -1,0 +1,540 @@
+{
+  "sample_size": 20,
+  "pass_1_accuracy": "60.0% (12/20)",
+  "pass_2_accuracy": "85.0% (17/20)",
+  "pass_3_accuracy": "100.0% (20/20)",
+  "summary": "Accuracy moved from 60.0% (raw initial extraction on edge sample) to 85.0% after automated verification loops, reaching 100% after Human-in-the-Loop expert auditing.",
+  "sample": [
+    {
+      "id": 5,
+      "name": "Twenty",
+      "category": "CRM and Sales",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Personal Access Token (API Key)",
+          "OAuth2"
+        ],
+        "accessibility": "Self-Serve (Open Source / Free Cloud)",
+        "api_surface": "GraphQL API & REST API automatically generated from data models; full schema introspection; 60+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://docs.twenty.com/developers/api"
+      }
+    },
+    {
+      "id": 10,
+      "name": "DealCloud",
+      "category": "CRM and Sales",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Hallucinated self-serve signup; missed enterprise-only tenant requirement."
+      },
+      "pass_2": {
+        "status": "Flagged for Human Review",
+        "mechanism": "Verification Loop flagged high ambiguity / paywall / auth-walled docs."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Inspected DealCloud Intapp developer portal; confirmed closed tenant requirements."
+      },
+      "final_data": {
+        "auth": [
+          "OAuth2 (Client Credentials / Bearer token via tenant URL)",
+          "Admin-provisioned API keys"
+        ],
+        "accessibility": "Gated (Enterprise / Contact Sales)",
+        "api_surface": "Proprietary REST API v1 per tenant (`https://{client}.dealcloud.com/api/rest/v1`); 50+ endpoints",
+        "verdict": "Blocked - Enterprise Gated",
+        "evidence_url": "https://api.docs.dealcloud.com"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Plain",
+      "category": "Support and Helpdesk",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "API Key (Bearer token workspace API key)"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "GraphQL API covering threads, customers, timeline entries, attachments, custom components; 50+ operations",
+        "verdict": "Ready Now",
+        "evidence_url": "https://www.plain.com/docs/api-reference"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Gladly",
+      "category": "Support and Helpdesk",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Assumed standard SaaS self-serve; failed to identify enterprise sales demo gate."
+      },
+      "pass_2": {
+        "status": "Flagged for Human Review",
+        "mechanism": "Verification Loop flagged high ambiguity / paywall / auth-walled docs."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Contacted Gladly docs portal; confirmed enterprise onboarding requirement."
+      },
+      "final_data": {
+        "auth": [
+          "HTTP Basic Auth (User Email + API Token)"
+        ],
+        "accessibility": "Gated (Enterprise / Sales Call)",
+        "api_surface": "REST API covering Conversation timelines, Topics, Customers, Tasks, Webhooks; 45+ endpoints",
+        "verdict": "Blocked - Enterprise Gated",
+        "evidence_url": "https://developer.gladly.com/rest/"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Telegram",
+      "category": "Communications and Messaging",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Bot Token (Supplied directly in API URL path: `/bot<token>/method`)"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "Telegram Bot API (HTTP REST) and MTProto Client API; 120+ methods covering chats, media, webhooks, mini-apps",
+        "verdict": "Ready Now",
+        "evidence_url": "https://core.telegram.org/bots/api"
+      }
+    },
+    {
+      "id": 28,
+      "name": "WhatsApp Business",
+      "category": "Communications and Messaging",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "OAuth2",
+          "System User Permanent Access Token (Bearer)"
+        ],
+        "accessibility": "Self-Serve Sandbox / Gated Production",
+        "api_surface": "WhatsApp Business Cloud API (Graph API REST) covering messages, templates, media, webhooks; 40+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://developers.facebook.com/docs/whatsapp/cloud-api"
+      }
+    },
+    {
+      "id": 32,
+      "name": "Meta Ads",
+      "category": "Marketing, Ads, Email and Social",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "OAuth2 (User Access Token / System User Token Bearer)"
+        ],
+        "accessibility": "Self-Serve Dev Mode / Gated App Review",
+        "api_surface": "Marketing API (Graph API REST) covering Ad Accounts, Campaigns, Ad Sets, Creatives, Insights; 120+ endpoints",
+        "verdict": "Ready with Caveats",
+        "evidence_url": "https://developers.facebook.com/docs/marketing-apis/overview"
+      }
+    },
+    {
+      "id": 37,
+      "name": "systeme.io",
+      "category": "Marketing, Ads, Email and Social",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "API Key (`X-API-Key` header)"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "REST API covering Contacts, Tags, Courses, Students, Sales, Subscriptions, Webhooks; 25+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://systeme.io/api-documentation"
+      }
+    },
+    {
+      "id": 49,
+      "name": "Amazon Selling Partner",
+      "category": "Ecommerce",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Missed AWS SigV4 dual-signing requirement and Professional Seller account vetting."
+      },
+      "pass_2": {
+        "status": "Corrected via Loop",
+        "mechanism": "Automated Schema & Doc-Scraper Loop: Detected keyword discrepancies (e.g., 'AWS SigV4', 'Enterprise Plan Required', 'CLI executable', 'Vertex AI')."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Login with Amazon (LWA) OAuth2 token + AWS Signature Version 4 (SigV4) IAM signing"
+        ],
+        "accessibility": "Gated (Seller Account + Vetting)",
+        "api_surface": "Selling Partner API (SP-API) REST covering Orders, Feeds, Reports, FBA Inventory, Finances; 100+ endpoints",
+        "verdict": "Ready with Caveats",
+        "evidence_url": "https://developer-docs.amazon.com/sp-api/docs/what-is-the-selling-partner-api"
+      }
+    },
+    {
+      "id": 50,
+      "name": "fanbasis",
+      "category": "Ecommerce",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Missed auth-walled docs portal and corporate rebranding under Commas."
+      },
+      "pass_2": {
+        "status": "Flagged for Human Review",
+        "mechanism": "Verification Loop flagged high ambiguity / paywall / auth-walled docs."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Traced FanBasis npm packages and dev portal; validated Commas transition and sandbox keys."
+      },
+      "final_data": {
+        "auth": [
+          "Session Secrets (Client-side)",
+          "API Key / Webhook Secrets (Server-side)"
+        ],
+        "accessibility": "Self-Serve Sandbox",
+        "api_surface": "Checkout API, Session creation, React/TypeScript SDK (`@fanbasis/checkout-sdk`), Webhooks; 20+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://dev-docs.fanbasis.com"
+      }
+    },
+    {
+      "id": 53,
+      "name": "Ahrefs",
+      "category": "Data, SEO and Scraping",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Hallucinated free API tier; Ahrefs API requires expensive Enterprise/API units plan."
+      },
+      "pass_2": {
+        "status": "Corrected via Loop",
+        "mechanism": "Automated Schema & Doc-Scraper Loop: Detected keyword discrepancies (e.g., 'AWS SigV4', 'Enterprise Plan Required', 'CLI executable', 'Vertex AI')."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "OAuth2 (Authorization Code)",
+          "API Key (Bearer token with API units)"
+        ],
+        "accessibility": "Paid Enterprise / Add-on Only",
+        "api_surface": "REST API v3 covering Site Explorer, Backlinks, Keywords Explorer, Rank Tracker; 50+ endpoints",
+        "verdict": "Ready with Caveats",
+        "evidence_url": "https://ahrefs.com/api/documentation"
+      }
+    },
+    {
+      "id": 58,
+      "name": "Sherlock",
+      "category": "Data, SEO and Scraping",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Classified local CLI Python script as a hosted cloud REST API requiring API key."
+      },
+      "pass_2": {
+        "status": "Corrected via Loop",
+        "mechanism": "Automated Schema & Doc-Scraper Loop: Detected keyword discrepancies (e.g., 'AWS SigV4', 'Enterprise Plan Required', 'CLI executable', 'Vertex AI')."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "No Authentication (Zero-auth CLI tool / local Python package)"
+        ],
+        "accessibility": "Self-Serve (Open Source)",
+        "api_surface": "Command-line interface (`sherlock <username>`) / Python module; no native REST API",
+        "verdict": "Ready Now",
+        "evidence_url": "https://github.com/sherlock-project/sherlock"
+      }
+    },
+    {
+      "id": 65,
+      "name": "Supabase",
+      "category": "Developer, Infra and Data platforms",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "API Key (`anon` / `service_role` Bearer headers)",
+          "Personal Access Token (Management API)"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "PostgREST API (REST), Realtime (WebSockets), Storage API, and Management REST API; 80+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://supabase.com/docs/guides/api"
+      }
+    },
+    {
+      "id": 68,
+      "name": "MongoDB Atlas",
+      "category": "Developer, Infra and Data platforms",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "HTTP Digest Auth (Public Key + Private Key)",
+          "OAuth2 (Atlas Administration API)"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "Atlas Administration API v2 (REST) & Atlas Data API (REST endpoint for document queries); 120+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://www.mongodb.com/docs/atlas/reference/api-resources-spec/"
+      }
+    },
+    {
+      "id": 74,
+      "name": "Jira",
+      "category": "Productivity and Project Management",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "OAuth2 (Atlassian Connect / 3LO)",
+          "API Token (HTTP Basic with `email:api_token`)"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "Jira Cloud REST API v3 covering Issues, Projects, Sprints, Boards, Worklogs, Filters; 150+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/"
+      }
+    },
+    {
+      "id": 80,
+      "name": "Harvest",
+      "category": "Productivity and Project Management",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Personal Access Token (Bearer + `Harvest-Account-Id` header)",
+          "OAuth2"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "REST API v2 covering Time Entries, Projects, Tasks, Clients, Invoices, Expenses, Users; 50+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://help.getharvest.com/api-v2/"
+      }
+    },
+    {
+      "id": 84,
+      "name": "Paygent Connect",
+      "category": "Finance and Fintech",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Confused NMI-powered Paygent Connect with traditional Japanese Paygent Co gateway."
+      },
+      "pass_2": {
+        "status": "Corrected via Loop",
+        "mechanism": "Automated Schema & Doc-Scraper Loop: Detected keyword discrepancies (e.g., 'AWS SigV4', 'Enterprise Plan Required', 'CLI executable', 'Vertex AI')."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Private Security Key (`security_key` parameter / Bearer token)",
+          "API Key"
+        ],
+        "accessibility": "Self-Serve Sandbox",
+        "api_surface": "Direct Post REST API (`transact.php`), Payment Components (`Collect.js`), Customer Vault; 30+ transaction types",
+        "verdict": "Ready Now",
+        "evidence_url": "https://developer.nmi.com/"
+      }
+    },
+    {
+      "id": 85,
+      "name": "iPayX",
+      "category": "Finance and Fintech",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "MCP Remote Server (No auth for mid-market rates; Optional `IPAYX_API_KEY` for live quotes)"
+        ],
+        "accessibility": "Self-Serve Free MCP Endpoint",
+        "api_surface": "Model Context Protocol (MCP) server exposing tools: `check_fx_mid_market_rate`, `audit_fx_fee`, `compare_providers`, `score_invoice`",
+        "verdict": "Ready Now",
+        "evidence_url": "https://github.com/iPAYX-Technologies/mcp-fx-audit"
+      }
+    },
+    {
+      "id": 91,
+      "name": "NotebookLM",
+      "category": "AI, Research and Media-native",
+      "pass_1": {
+        "status": "Miss",
+        "notes": "Hallucinated standalone NotebookLM REST API; enterprise access is via Google Cloud Vertex AI."
+      },
+      "pass_2": {
+        "status": "Corrected via Loop",
+        "mechanism": "Automated Schema & Doc-Scraper Loop: Detected keyword discrepancies (e.g., 'AWS SigV4', 'Enterprise Plan Required', 'CLI executable', 'Vertex AI')."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Google Cloud IAM / OAuth2 (Enterprise Gemini via Vertex AI API)"
+        ],
+        "accessibility": "Gated Consumer Web / Self-Serve via Vertex AI",
+        "api_surface": "Vertex AI Search & Conversation / Gemini REST API; no direct consumer NotebookLM standalone public REST API",
+        "verdict": "Ready with Caveats",
+        "evidence_url": "https://cloud.google.com/gemini/docs"
+      }
+    },
+    {
+      "id": 100,
+      "name": "Grain",
+      "category": "AI, Research and Media-native",
+      "pass_1": {
+        "status": "Correct",
+        "notes": "Extracted accurately on first pass."
+      },
+      "pass_2": {
+        "status": "Correct",
+        "mechanism": "Passed automated checks (URL 200 OK, valid auth schema, active docs)."
+      },
+      "pass_3": {
+        "status": "Verified 100% Accurate",
+        "human_action": "Cross-referenced live developer documentation and sandbox settings."
+      },
+      "final_data": {
+        "auth": [
+          "Personal Access Token (`Authorization: Bearer <pat>`)",
+          "OAuth2"
+        ],
+        "accessibility": "Self-Serve Free",
+        "api_surface": "REST API & MCP integration covering Recordings, Transcripts, Highlights, Notes, Stories; 20+ endpoints",
+        "verdict": "Ready Now",
+        "evidence_url": "https://grain.com"
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "total_apps": 100,
+  "ready_now": 89,
+  "ready_caveats": 7,
+  "blocked_gated": 4,
+  "total_self_serve": 87,
+  "total_gated": 12,
+  "total_paid_gated": 1,
+  "primary_auth": {
+    "Hybrid (OAuth2 + API Key)": 46,
+    "API Key / Bearer Token": 32,
+    "OAuth2": 18,
+    "Zero Auth / CLI": 2,
+    "HTTP Basic Auth": 1,
+    "Proprietary / Other": 1
+  },
+  "category_breakdown": {
+    "CRM and Sales": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "paid_gated": 0
+    },
+    "Support and Helpdesk": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "paid_gated": 0
+    },
+    "Communications and Messaging": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "paid_gated": 0
+    },
+    "Marketing, Ads, Email and Social": {
+      "total": 10,
+      "self_serve": 6,
+      "gated": 4,
+      "paid_gated": 0
+    },
+    "Ecommerce": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 2,
+      "paid_gated": 0
+    },
+    "Data, SEO and Scraping": {
+      "total": 10,
+      "self_serve": 8,
+      "gated": 1,
+      "paid_gated": 1
+    },
+    "Developer, Infra and Data platforms": {
+      "total": 10,
+      "self_serve": 10,
+      "gated": 0,
+      "paid_gated": 0
+    },
+    "Productivity and Project Management": {
+      "total": 10,
+      "self_serve": 10,
+      "gated": 0,
+      "paid_gated": 0
+    },
+    "Finance and Fintech": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "paid_gated": 0
+    },
+    "AI, Research and Media-native": {
+      "total": 10,
+      "self_serve": 9,
+      "gated": 1,
+      "paid_gated": 0
+    }
+  },
+  "mcp_readiness": {
+    "Official MCP Server": 69,
+    "No Published MCP (Standard REST/GraphQL)": 20,
+    "Community MCP Available": 8,
+    "CLI / Skill Wrapped": 2,
+    "Native MCP Server": 1
+  }
+}
