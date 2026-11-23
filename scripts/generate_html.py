@@ -1,12 +1,13 @@
 """
-Generates the revised, high-taste, anti-AI, ASD-STE100 compliant standalone HTML Case Study.
-Features:
-- Full Light Mode and Dark Mode support with persistence and interactive toggle button
-- Justified typography across all prose and technical descriptions
-- ASD-STE100 (Simplified Technical English) language standard
-- Table batching: Default first 8 entries, dropdown for 8/10/20/50/100, expand/collapse arrow
-- "Showing X of 100" counter located directly in the filter toolbar
-- Clean Linear/Stripe-inspired interface with high information density
+Generates the revised, bespoke HTML Case Study utilizing the user-provided 5-color palette:
+#FFFDFA (Warm Ivory)
+#F2EFE7 (Warm Linen / Paper)
+#D7C9B8 (Warm Sand / Border Taupe)
+#C56B4A (Terracotta / Sienna Accent)
+#2D2622 (Espresso Obsidian / Charcoal Dark)
+
+Provides full compatibility and optical contrast for both Light Mode and Dark Mode,
+maintaining ASD-STE100 technical English, text justification, and batch pagination.
 """
 
 import json
@@ -36,61 +37,80 @@ def generate():
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {{
-      --bg-base: #0c0e12;
-      --bg-surface: #14171f;
-      --bg-surface-raised: #1a1e28;
-      --bg-surface-hover: #212634;
-      --border-subtle: #222735;
-      --border-strong: #31384a;
-      --border-focus: #4f5975;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --text-subtle: #6b7280;
-      --accent: #3b82f6;
-      --accent-soft: rgba(59, 130, 246, 0.12);
-      --code-bg: #08090c;
-      --code-text: #e5e7eb;
-      --status-ready: #10b981;
-      --status-ready-bg: rgba(16, 185, 129, 0.1);
-      --status-ready-border: rgba(16, 185, 129, 0.25);
-      --status-caveat: #f59e0b;
-      --status-caveat-bg: rgba(245, 158, 11, 0.1);
-      --status-caveat-border: rgba(245, 158, 11, 0.25);
-      --status-blocked: #ef4444;
-      --status-blocked-bg: rgba(239, 68, 68, 0.1);
-      --status-blocked-border: rgba(239, 68, 68, 0.25);
+    /*
+      Palette Mapping:
+      #FFFDFA - Warm Ivory
+      #F2EFE7 - Warm Linen
+      #D7C9B8 - Sand / Border Taupe
+      #C56B4A - Terracotta / Rust Accent
+      #2D2622 - Espresso Obsidian
+    */
+
+    /* Dark Mode (Espresso Base) */
+    :root, [data-theme="dark"] {{
+      --bg-base: #1c1714;
+      --bg-surface: #2D2622;
+      --bg-surface-raised: #38302B;
+      --bg-surface-hover: #443B35;
+      --border-subtle: #3E352F;
+      --border-strong: #54473F;
+      --border-focus: #C56B4A;
+      --text-main: #FFFDFA;
+      --text-muted: #D7C9B8;
+      --text-subtle: #A39483;
+      --accent: #D97754;
+      --accent-deep: #C56B4A;
+      --accent-soft: rgba(197, 107, 74, 0.18);
+      --accent-border: rgba(197, 107, 74, 0.4);
+      --code-bg: #15110F;
+      --code-text: #FFFDFA;
+      --status-ready: #86EFAC;
+      --status-ready-bg: rgba(134, 239, 172, 0.12);
+      --status-ready-border: rgba(134, 239, 172, 0.28);
+      --status-caveat: #FDE047;
+      --status-caveat-bg: rgba(253, 224, 71, 0.12);
+      --status-caveat-border: rgba(253, 224, 71, 0.28);
+      --status-blocked: #FCA5A5;
+      --status-blocked-bg: rgba(252, 165, 165, 0.12);
+      --status-blocked-border: rgba(252, 165, 165, 0.28);
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
       --font-code: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
       --radius-sm: 4px;
       --radius-md: 8px;
       --radius-lg: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 6px 18px rgba(0,0,0,0.45);
     }}
 
+    /* Light Mode (Linen & Ivory Base) */
     [data-theme="light"] {{
-      --bg-base: #f8fafc;
-      --bg-surface: #ffffff;
-      --bg-surface-raised: #f1f5f9;
-      --bg-surface-hover: #e2e8f0;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --border-focus: #94a3b8;
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --text-subtle: #64748b;
-      --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.08);
-      --code-bg: #1e293b;
-      --code-text: #f8fafc;
-      --status-ready: #059669;
-      --status-ready-bg: rgba(5, 150, 105, 0.08);
-      --status-ready-border: rgba(5, 150, 105, 0.25);
-      --status-caveat: #d97706;
-      --status-caveat-bg: rgba(217, 119, 6, 0.08);
-      --status-caveat-border: rgba(217, 119, 6, 0.25);
-      --status-blocked: #dc2626;
-      --status-blocked-bg: rgba(220, 38, 38, 0.08);
-      --status-blocked-border: rgba(220, 38, 38, 0.25);
+      --bg-base: #F2EFE7;
+      --bg-surface: #FFFDFA;
+      --bg-surface-raised: #EAE5DC;
+      --bg-surface-hover: #E2DCD1;
+      --border-subtle: #E2D9CC;
+      --border-strong: #D7C9B8;
+      --border-focus: #C56B4A;
+      --text-main: #2D2622;
+      --text-muted: #5C5047;
+      --text-subtle: #857467;
+      --accent: #C56B4A;
+      --accent-deep: #A85435;
+      --accent-soft: rgba(197, 107, 74, 0.10);
+      --accent-border: rgba(197, 107, 74, 0.35);
+      --code-bg: #2D2622;
+      --code-text: #FFFDFA;
+      --status-ready: #15803D;
+      --status-ready-bg: rgba(21, 128, 61, 0.08);
+      --status-ready-border: rgba(21, 128, 61, 0.25);
+      --status-caveat: #B45309;
+      --status-caveat-bg: rgba(180, 83, 9, 0.08);
+      --status-caveat-border: rgba(180, 83, 9, 0.25);
+      --status-blocked: #B91C1C;
+      --status-blocked-bg: rgba(185, 28, 28, 0.08);
+      --status-blocked-border: rgba(185, 28, 28, 0.25);
+      --shadow-sm: 0 1px 3px rgba(45,38,34,0.06);
+      --shadow-md: 0 6px 18px rgba(45,38,34,0.08);
     }}
 
     * {{
@@ -106,19 +126,20 @@ def generate():
       line-height: 1.55;
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }}
 
     a {{
-      color: var(--text-main);
+      color: var(--accent);
       text-decoration: underline;
       text-decoration-color: var(--border-strong);
       text-underline-offset: 3px;
-      transition: text-decoration-color 0.15s ease;
+      transition: text-decoration-color 0.15s ease, color 0.15s ease;
     }}
 
     a:hover {{
       text-decoration-color: var(--accent);
+      color: var(--accent);
     }}
 
     .container {{
@@ -135,7 +156,7 @@ def generate():
       position: sticky;
       top: 0;
       z-index: 50;
-      transition: background-color 0.2s ease, border-color 0.2s ease;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }}
 
     .header-content {{
@@ -159,7 +180,7 @@ def generate():
     }}
 
     .meta-separator {{
-      color: var(--text-subtle);
+      color: var(--border-strong);
     }}
 
     h1 {{
@@ -170,7 +191,6 @@ def generate():
       margin-bottom: 6px;
     }}
 
-    /* Justified text styling */
     .subtitle {{
       color: var(--text-muted);
       font-size: 14px;
@@ -216,21 +236,22 @@ def generate():
       margin-left: auto;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       background: var(--bg-surface-raised);
       border: 1px solid var(--border-strong);
       color: var(--text-main);
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: var(--radius-sm);
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       font-family: var(--font-code);
-      transition: background 0.15s ease;
+      transition: all 0.2s ease;
     }}
 
     .theme-toggle-btn:hover {{
       background: var(--bg-surface-hover);
+      border-color: var(--accent);
     }}
 
     /* Metrics Grid */
@@ -258,6 +279,13 @@ def generate():
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }}
+
+    .metric-card:hover {{
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
     }}
 
     .metric-title {{
@@ -332,6 +360,7 @@ def generate():
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: var(--shadow-sm);
     }}
 
     .pattern-card-header {{
@@ -354,7 +383,6 @@ def generate():
       color: var(--text-main);
     }}
 
-    /* Text justification */
     .pattern-body {{
       color: var(--text-muted);
       font-size: 13px;
@@ -375,12 +403,13 @@ def generate():
 
     .pattern-callout {{
       background: var(--bg-surface-raised);
-      border-left: 2px solid var(--border-strong);
+      border-left: 3px solid var(--accent);
       padding: 10px 14px;
       font-size: 12px;
       color: var(--text-main);
       line-height: 1.5;
       text-align: justify;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }}
 
     /* Table Toolbar & Pagination Header */
@@ -393,6 +422,7 @@ def generate():
       display: flex;
       flex-direction: column;
       gap: 14px;
+      box-shadow: var(--shadow-sm);
     }}
 
     .toolbar-top-row {{
@@ -438,10 +468,11 @@ def generate():
       font-size: 13px;
       width: 260px;
       outline: none;
+      transition: border-color 0.2s ease;
     }}
 
     .search-input:focus {{
-      border-color: var(--accent);
+      border-color: var(--border-focus);
     }}
 
     .filter-select {{
@@ -453,10 +484,11 @@ def generate():
       font-size: 12px;
       outline: none;
       cursor: pointer;
+      transition: border-color 0.2s ease;
     }}
 
     .filter-select:focus {{
-      border-color: var(--accent);
+      border-color: var(--border-focus);
     }}
 
     .batch-selector-wrap {{
@@ -479,11 +511,12 @@ def generate():
       font-size: 12px;
       cursor: pointer;
       font-weight: 500;
-      transition: background 0.15s;
+      transition: background 0.15s, border-color 0.15s;
     }}
 
     .toggle-expand-btn:hover {{
       background: var(--bg-surface-hover);
+      border-color: var(--accent);
     }}
 
     /* Table Component */
@@ -492,6 +525,7 @@ def generate():
       border: 1px solid var(--border-subtle);
       border-radius: 0 0 var(--radius-md) var(--radius-md);
       overflow-x: auto;
+      box-shadow: var(--shadow-sm);
     }}
 
     table {{
@@ -570,7 +604,7 @@ def generate():
       text-align: justify;
     }}
 
-    /* Clean badges */
+    /* Tags */
     .tag {{
       display: inline-block;
       padding: 2px 7px;
@@ -630,6 +664,7 @@ def generate():
       font-size: 12px;
       cursor: pointer;
       font-family: var(--font-code);
+      transition: background 0.15s, border-color 0.15s;
     }}
 
     .page-btn:disabled {{
@@ -639,6 +674,7 @@ def generate():
 
     .page-btn:hover:not(:disabled) {{
       background: var(--bg-surface-hover);
+      border-color: var(--accent);
     }}
 
     /* Verification Accuracy Table */
@@ -660,6 +696,7 @@ def generate():
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 20px;
+      box-shadow: var(--shadow-sm);
     }}
 
     .audit-step-label {{
@@ -689,7 +726,7 @@ def generate():
     /* Code Block */
     .code-panel {{
       background: var(--code-bg);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-md);
       padding: 16px 20px;
       font-family: var(--font-code);
@@ -697,9 +734,10 @@ def generate():
       color: var(--code-text);
       overflow-x: auto;
       line-height: 1.6;
+      box-shadow: var(--shadow-sm);
     }}
 
-    /* Drawer */
+    /* Detail Drawer */
     .drawer-overlay {{
       display: none;
       position: fixed;
@@ -721,6 +759,7 @@ def generate():
       z-index: 101;
       padding: 28px;
       overflow-y: auto;
+      box-shadow: var(--shadow-md);
       transition: right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }}
 
@@ -743,10 +782,12 @@ def generate():
       justify-content: center;
       cursor: pointer;
       font-size: 13px;
+      transition: color 0.15s, border-color 0.15s;
     }}
 
     .drawer-close-btn:hover {{
       color: var(--text-main);
+      border-color: var(--accent);
     }}
 
     footer {{
@@ -779,7 +820,7 @@ def generate():
         </div>
         <div style="text-align:right;">
           <div style="font-family:var(--font-code); font-size:12px; color:var(--text-muted);">Format: Controlled Technical English</div>
-          <div style="font-family:var(--font-code); font-size:11px; color:var(--status-ready); margin-top:4px;">Dataset Status: Fully Verified</div>
+          <div style="font-family:var(--font-code); font-size:11px; color:var(--accent); font-weight:600; margin-top:4px;">Dataset Status: Fully Verified</div>
         </div>
       </div>
 
@@ -1166,17 +1207,17 @@ def generate():
       </div>
 
       <div class="code-panel">
-<span style="color:#6b7280;"># 1. Execute the research agent across all 100 applications</span>
+<span style="color:#A39483;"># 1. Execute the research agent across all 100 applications</span>
 python3 scripts/research_pipeline.py --run-all
 
-<span style="color:#6b7280;"># 2. Inspect a specific application</span>
+<span style="color:#A39483;"># 2. Inspect a specific application</span>
 python3 scripts/research_pipeline.py --app Salesforce
 python3 scripts/research_pipeline.py --app DealCloud
 
-<span style="color:#6b7280;"># 3. Execute the verification and accuracy engine</span>
+<span style="color:#A39483;"># 3. Execute the verification and accuracy engine</span>
 python3 scripts/verification_engine.py
 
-<span style="color:#6b7280;"># 4. Output quantitative pattern metrics</span>
+<span style="color:#A39483;"># 4. Output quantitative pattern metrics</span>
 python3 scripts/analyze_patterns.py
       </div>
 
@@ -1213,11 +1254,11 @@ python3 scripts/analyze_patterns.py
     const AUDIT = {verification_json_str};
 
     let currentPage = 1;
-    let pageSize = 8; // Default first 8 entries
+    let pageSize = 8;
     let filteredApps = [...APPS];
     let isAllExpanded = false;
 
-    // Theme Management (Light / Dark mode toggle with persistence)
+    // Theme Management with LocalStorage persistence
     function initTheme() {{
       const savedTheme = localStorage.getItem("composio-theme") || "dark";
       document.documentElement.setAttribute("data-theme", savedTheme);
@@ -1259,7 +1300,6 @@ python3 scripts/analyze_patterns.py
 
       const pageItems = filteredApps.slice(startIdx, endIdx);
 
-      // Counter placement: near filters up top
       const counterRange = document.getElementById("count-range");
       const counterTotal = document.getElementById("count-total");
       
@@ -1488,8 +1528,8 @@ python3 scripts/analyze_patterns.py
             <p style="font-size:13px; color:var(--text-muted); text-align:justify;">${{app.mcp_status}}</p>
           </div>
 
-          <div style="background:var(--bg-base); padding:14px; border-left:2px solid var(--border-strong); border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
-            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle);">Composio Integration Strategy</div>
+          <div style="background:var(--bg-base); padding:14px; border-left:3px solid var(--accent); border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--accent);">Composio Integration Strategy</div>
             <p style="font-size:12px; color:var(--text-main); margin-top:4px; text-align:justify;">${{app.composio_fit}}</p>
           </div>
 
@@ -1531,7 +1571,7 @@ python3 scripts/analyze_patterns.py
 
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("Successfully regenerated index.html with Light Mode toggle and justified prose text.")
+    print("Successfully regenerated index.html with custom 5-color palette (#FFFDFA, #F2EFE7, #D7C9B8, #C56B4A, #2D2622)")
 
 if __name__ == "__main__":
     generate()
