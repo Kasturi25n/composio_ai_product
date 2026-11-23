@@ -2,8 +2,8 @@
 
 > **Take-Home Assignment for AI Product Ops Intern at Composio**  
 > **Candidate:** Kasturi25n  
-> **Live Deployed Case Study:** [https://kasturi25n.github.io/composio-ai-product-ops/](https://kasturi25n.github.io/composio-ai-product-ops/)  
-> **Source Repository:** [https://github.com/Kasturi25n/composio-ai-product-ops](https://github.com/Kasturi25n/composio-ai-product-ops)  
+> **Live Deployed Case Study:** [https://kasturi25n.github.io/composio_ai_product/](https://kasturi25n.github.io/composio_ai_product/)  
+> **Source Repository:** [https://github.com/Kasturi25n/composio_ai_product](https://github.com/Kasturi25n/composio_ai_product)  
 
 ---
 
@@ -100,7 +100,7 @@ Pass 3: Human-in-the-Loop Audit     ➔ 100.0% accuracy (20/20 verified ground t
 * **Pass 2 Automated Corrections:** Automated schema rules flagged contradictory keywords (*"Contact Sales"*, *"CLI executable"*, *"AWS SigV4"*) and verified HTTP status codes.
 * **Pass 3 Human Audit:** Human technical review verified tenant settings, resolved branding redirects, and confirmed sandbox environments.
 
-A full 20-app stratified audit table (2 apps per category) documenting every hit and miss is embedded directly in [`index.html#verification`](https://kasturi25n.github.io/composio-ai-product-ops/#verification) and [`data/verification_sample.json`](data/verification_sample.json).
+A full 20-app stratified audit table (2 apps per category) documenting every hit and miss is embedded directly in [`index.html#verification`](https://kasturi25n.github.io/composio_ai_product/#verification) and [`data/verification_sample.json`](data/verification_sample.json).
 
 ---
 
@@ -154,6 +154,6 @@ A full 20-app stratified audit table (2 apps per category) documenting every hit
 ## 🚀 Deliverables & Submission Links
 
 * **Live Deployed Case Study URL:**  
-  [https://kasturi25n.github.io/composio-ai-product-ops/](https://kasturi25n.github.io/composio-ai-product-ops/)
+  [https://kasturi25n.github.io/composio_ai_product/](https://kasturi25n.github.io/composio_ai_product/)
 * **Source Repository URL:**  
-  [https://github.com/Kasturi25n/composio-ai-product-ops](https://github.com/Kasturi25n/composio-ai-product-ops)
+  [https://github.com/Kasturi25n/composio_ai_product](https://github.com/Kasturi25n/composio_ai_product)
