@@ -1,12 +1,11 @@
 """
-Generates the comprehensive, standalone, single-page HTML Case Study for the Composio AI Product Ops Assessment.
-Includes:
-- Executive Summary & 2-Minute Skimmable Findings
-- Clustered Pattern Analysis (Insight over Raw Table)
-- Interactive 100-App Matrix with Multi-faceted Filtering & Instant Search
-- Agent Architecture & Human-in-the-Loop Analysis
-- Verification Engine & Accuracy Progression (Pass 1 -> Pass 2 -> Final)
-- Code & Reproducibility Guide
+Generates the revised, high-taste, anti-AI, ASD-STE100 compliant standalone HTML Case Study.
+Implements:
+- Strict ASD-STE100 (Simplified Technical English) language structure
+- Taste Skill & Unslop design principles (restrained typography, no neon gradients, no AI clichés)
+- Table batching: Default first 8 entries, dropdown for 8/10/20/50/100, expand/collapse arrow
+- "Showing X of 100" counter located directly in the filter toolbar
+- Clean Linear/Stripe-inspired dark interface with high information density
 """
 
 import json
@@ -22,7 +21,6 @@ def generate():
     with open("data/verification_sample.json", "r", encoding="utf-8") as f:
         verification = json.load(f)
 
-    # Convert data to json string for client-side embedding
     apps_json_str = json.dumps(apps, ensure_ascii=False)
     summary_json_str = json.dumps(summary, ensure_ascii=False)
     verification_json_str = json.dumps(verification, ensure_ascii=False)
@@ -32,35 +30,38 @@ def generate():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Composio Product Ops Research: 100-App Landscape & Agent Discovery Engine</title>
+  <title>Composio Product Operations: 100 Application Integration Evaluation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {{
-      --bg-primary: #0a0d14;
-      --bg-secondary: #111622;
-      --bg-card: #161c2d;
-      --bg-card-hover: #1c2438;
-      --border-color: #242e47;
-      --border-accent: #334166;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
-      --accent-cyan: #06b6d4;
-      --accent-blue: #3b82f6;
-      --accent-purple: #8b5cf6;
-      --accent-green: #10b981;
-      --accent-amber: #f59e0b;
-      --accent-rose: #f43f5e;
-      --gradient-brand: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
-      --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
-      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg-base: #0c0e12;
+      --bg-surface: #14171f;
+      --bg-surface-raised: #1a1e28;
+      --bg-surface-hover: #212634;
+      --border-subtle: #222735;
+      --border-strong: #31384a;
+      --border-focus: #4f5975;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-subtle: #6b7280;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --status-ready: #10b981;
+      --status-ready-bg: rgba(16, 185, 129, 0.1);
+      --status-ready-border: rgba(16, 185, 129, 0.25);
+      --status-caveat: #f59e0b;
+      --status-caveat-bg: rgba(245, 158, 11, 0.1);
+      --status-caveat-border: rgba(245, 158, 11, 0.25);
+      --status-blocked: #ef4444;
+      --status-blocked-bg: rgba(239, 68, 68, 0.1);
+      --status-blocked-border: rgba(239, 68, 68, 0.25);
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --font-code: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
     }}
 
     * {{
@@ -70,261 +71,243 @@ def generate():
     }}
 
     body {{
-      font-family: var(--font-main);
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
+      font-family: var(--font-body);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.5;
+      font-size: 14px;
       -webkit-font-smoothing: antialiased;
     }}
 
     a {{
-      color: var(--accent-cyan);
-      text-decoration: none;
-      transition: all 0.2s;
+      color: var(--text-main);
+      text-decoration: underline;
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.15s ease;
     }}
 
     a:hover {{
-      color: #67e8f9;
-      text-decoration: underline;
+      text-decoration-color: var(--accent);
     }}
 
     .container {{
-      max-width: 1440px;
+      max-width: 1360px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
     }}
 
-    /* Header & Hero */
+    /* Header */
     header {{
-      background: linear-gradient(180deg, rgba(17, 22, 34, 0.95) 0%, rgba(10, 13, 20, 0.98) 100%);
-      border-bottom: 1px solid var(--border-color);
-      padding: 48px 0 32px 0;
+      background: var(--bg-base);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 32px 0 20px 0;
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
+      z-index: 50;
     }}
 
-    .header-top {{
+    .header-content {{
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 16px;
+      margin-bottom: 20px;
+      gap: 24px;
     }}
 
-    .brand-badge {{
+    .doc-meta {{
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(6, 182, 212, 0.12);
-      border: 1px solid rgba(6, 182, 212, 0.3);
-      color: var(--accent-cyan);
-      padding: 4px 12px;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      font-family: var(--font-code);
+      font-size: 11px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }}
+
+    .meta-separator {{
+      color: var(--text-subtle);
     }}
 
     h1 {{
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
     }}
 
     .subtitle {{
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      max-width: 850px;
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 820px;
+      line-height: 1.5;
     }}
 
-    .nav-tabs {{
+    .nav-strip {{
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
+      gap: 4px;
+      border-top: 1px solid var(--border-subtle);
       padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      overflow-x: auto;
     }}
 
-    .tab-btn {{
+    .nav-item {{
       background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      padding: 10px 18px;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 6px 14px;
       border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s ease;
       white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }}
 
-    .tab-btn:hover {{
-      color: var(--text-primary);
-      background: var(--bg-card);
+    .nav-item:hover {{
+      color: var(--text-main);
+      background: var(--bg-surface);
     }}
 
-    .tab-btn.active {{
+    .nav-item.active {{
       color: #ffffff;
-      background: rgba(59, 130, 246, 0.2);
-      border: 1px solid rgba(59, 130, 246, 0.4);
+      background: var(--bg-surface-raised);
+      border-color: var(--border-strong);
     }}
 
-    /* Stat Cards Strip */
-    .stats-strip {{
+    /* Metrics Grid */
+    .metrics-row {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 16px;
-      margin: 32px 0 40px 0;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 28px 0;
     }}
 
-    .stat-card {{
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
+    @media (max-width: 1024px) {{
+      .metrics-row {{
+        grid-template-columns: repeat(2, 1fr);
+      }}
+    }}
+
+    @media (max-width: 640px) {{
+      .metrics-row {{
+        grid-template-columns: 1fr;
+      }}
+    }}
+
+    .metric-card {{
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
+      padding: 16px 20px;
     }}
 
-    .stat-card:hover {{
-      transform: translateY(-2px);
-      border-color: var(--border-accent);
-    }}
-
-    .stat-card::before {{
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--accent-cyan);
-    }}
-
-    .stat-card.blue::before {{ background: var(--accent-blue); }}
-    .stat-card.green::before {{ background: var(--accent-green); }}
-    .stat-card.amber::before {{ background: var(--accent-amber); }}
-    .stat-card.purple::before {{ background: var(--accent-purple); }}
-
-    .stat-label {{
-      font-size: 0.8rem;
+    .metric-title {{
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: var(--text-muted);
+      color: var(--text-subtle);
       font-weight: 600;
-      margin-bottom: 8px;
-    }}
-
-    .stat-val {{
-      font-size: 2rem;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1;
       margin-bottom: 6px;
-      font-family: var(--font-mono);
     }}
 
-    .stat-desc {{
-      font-size: 0.82rem;
-      color: var(--text-secondary);
+    .metric-value {{
+      font-family: var(--font-code);
+      font-size: 26px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.1;
+      margin-bottom: 4px;
     }}
 
-    /* Section Headers */
-    .section-title-wrap {{
-      margin: 48px 0 24px 0;
+    .metric-note {{
+      font-size: 12px;
+      color: var(--text-muted);
+    }}
+
+    /* Section Structure */
+    section {{
+      margin-bottom: 48px;
+    }}
+
+    .section-header {{
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 16px;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 16px;
     }}
 
     .section-title {{
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 600;
       color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      letter-spacing: -0.01em;
     }}
 
     .section-desc {{
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 4px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
     }}
 
-    /* Pattern Cards */
+    /* Patterns Grid */
     .patterns-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }}
+
+    @media (max-width: 860px) {{
+      .patterns-grid {{
+        grid-template-columns: 1fr;
+      }}
     }}
 
     .pattern-card {{
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }}
 
-    .pattern-header {{
+    .pattern-card-header {{
       display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
     }}
 
-    .pattern-tag {{
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-      text-transform: uppercase;
+    .pattern-num {{
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
     }}
 
-    .tag-blue {{ background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }}
-    .tag-green {{ background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }}
-    .tag-purple {{ background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }}
-    .tag-amber {{ background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }}
-
-    .pattern-title {{
-      font-size: 1.25rem;
-      font-weight: 700;
+    .pattern-heading {{
+      font-size: 15px;
+      font-weight: 600;
       color: #ffffff;
     }}
 
     .pattern-body {{
-      color: var(--text-secondary);
-      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-size: 13px;
       line-height: 1.6;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }}
 
     .pattern-body ul {{
-      margin-left: 20px;
-      margin-top: 10px;
+      margin-left: 18px;
+      margin-top: 8px;
     }}
 
     .pattern-body li {{
@@ -332,633 +315,539 @@ def generate():
     }}
 
     .pattern-callout {{
-      background: rgba(17, 22, 34, 0.7);
-      border-left: 3px solid var(--accent-cyan);
-      padding: 12px 16px;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.88rem;
-      color: var(--text-primary);
+      background: var(--bg-surface-raised);
+      border-left: 2px solid var(--border-strong);
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--text-main);
+      line-height: 1.5;
     }}
 
-    /* Visual Bars */
-    .bar-group {{
-      margin-top: 16px;
-    }}
-
-    .bar-row {{
-      margin-bottom: 12px;
-    }}
-
-    .bar-meta {{
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 4px;
-    }}
-
-    .bar-track {{
-      height: 8px;
-      background: var(--bg-secondary);
-      border-radius: 4px;
-      overflow: hidden;
-    }}
-
-    .bar-fill {{
-      height: 100%;
-      border-radius: 4px;
-      transition: width 1s ease-in-out;
-    }}
-
-    /* Search & Filter Toolbar */
-    .toolbar {{
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
+    /* Table Toolbar & Pagination Header */
+    .table-toolbar {{
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-bottom: none;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
       padding: 16px 20px;
-      margin-bottom: 20px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 14px;
     }}
 
-    .search-box {{
-      position: relative;
-      flex: 1;
-      min-width: 280px;
+    .toolbar-top-row {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }}
+
+    /* Key Requirement: "showing x of 100 near the filters, not near the ending" */
+    .status-counter-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-family: var(--font-code);
+      font-size: 12px;
+      font-weight: 500;
+      color: #ffffff;
+    }}
+
+    .status-counter-badge span.accent {{
+      color: var(--accent);
+      font-weight: 600;
+    }}
+
+    .toolbar-controls {{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
     }}
 
     .search-input {{
-      width: 100%;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+      background: var(--bg-base);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      padding: 10px 16px 10px 38px;
+      padding: 7px 12px;
       color: #ffffff;
-      font-size: 0.9rem;
+      font-size: 13px;
+      width: 260px;
       outline: none;
-      transition: border-color 0.2s;
     }}
 
     .search-input:focus {{
-      border-color: var(--accent-cyan);
-    }}
-
-    .search-icon {{
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-    }}
-
-    .filter-group {{
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      border-color: var(--accent);
     }}
 
     .filter-select {{
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+      background: var(--bg-base);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      padding: 9px 14px;
-      color: var(--text-primary);
-      font-size: 0.85rem;
+      padding: 7px 10px;
+      color: var(--text-main);
+      font-size: 12px;
       outline: none;
       cursor: pointer;
     }}
 
     .filter-select:focus {{
-      border-color: var(--accent-cyan);
+      border-color: var(--accent);
     }}
 
-    .badge-counter {{
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      padding: 4px 10px;
+    .batch-selector-wrap {{
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }}
+
+    .toggle-expand-btn {{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      font-weight: 600;
+      padding: 6px 12px;
+      color: var(--text-main);
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.15s;
     }}
 
-    /* Table Matrix */
-    .table-container {{
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
+    .toggle-expand-btn:hover {{
+      background: var(--bg-surface-hover);
+    }}
+
+    /* Table Component */
+    .table-wrapper {{
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
       overflow-x: auto;
-      box-shadow: var(--shadow-sm);
-      margin-bottom: 48px;
     }}
 
     table {{
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.88rem;
+      font-size: 13px;
     }}
 
     th {{
-      background: var(--bg-secondary);
-      padding: 14px 18px;
-      font-size: 0.78rem;
-      font-weight: 700;
+      background: var(--bg-surface-raised);
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--text-muted);
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-subtle);
       white-space: nowrap;
     }}
 
     td {{
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--text-secondary);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
       vertical-align: top;
+      line-height: 1.4;
     }}
 
     tr:hover td {{
-      background: var(--bg-card-hover);
+      background: var(--bg-surface-raised);
+      color: var(--text-main);
     }}
 
-    .app-id {{
-      font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--text-muted);
-      width: 45px;
+    .row-id {{
+      font-family: var(--font-code);
+      font-size: 12px;
+      color: var(--text-subtle);
+      width: 44px;
     }}
 
-    .app-name-cell {{
-      font-weight: 700;
-      color: #ffffff;
-      font-size: 0.95rem;
+    .app-title-cell {{
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }}
 
-    .app-cat {{
-      font-size: 0.75rem;
-      color: var(--accent-cyan);
-      font-weight: 500;
+    .app-name {{
+      font-weight: 600;
+      color: #ffffff;
+      font-size: 13px;
+      cursor: pointer;
     }}
 
-    .badge {{
+    .app-name:hover {{
+      color: var(--accent);
+      text-decoration: underline;
+    }}
+
+    .app-category {{
+      font-size: 11px;
+      color: var(--text-subtle);
+    }}
+
+    /* Clean, non-neon pill tags */
+    .tag {{
       display: inline-block;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 500;
+      font-family: var(--font-code);
       white-space: nowrap;
-      margin: 2px 2px 2px 0;
+      margin: 1px 2px 1px 0;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-raised);
+      color: var(--text-main);
     }}
 
-    .badge-green {{ background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }}
-    .badge-amber {{ background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }}
-    .badge-rose {{ background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }}
-    .badge-blue {{ background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }}
-    .badge-purple {{ background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); }}
-
-    .api-surface-text {{
-      max-width: 260px;
-      font-size: 0.82rem;
-      line-height: 1.4;
+    .tag-ready {{
+      background: var(--status-ready-bg);
+      border-color: var(--status-ready-border);
+      color: var(--status-ready);
     }}
 
-    .blocker-text {{
-      max-width: 240px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.4;
+    .tag-caveat {{
+      background: var(--status-caveat-bg);
+      border-color: var(--status-caveat-border);
+      color: var(--status-caveat);
     }}
 
-    .evidence-btn {{
-      display: inline-flex;
+    .tag-blocked {{
+      background: var(--status-blocked-bg);
+      border-color: var(--status-blocked-border);
+      color: var(--status-blocked);
+    }}
+
+    /* Pagination Bar */
+    .pagination-bar {{
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(6, 182, 212, 0.25);
-      color: var(--accent-cyan);
+      padding: 14px 20px;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-muted);
+    }}
+
+    .pagination-actions {{
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }}
+
+    .page-btn {{
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-strong);
+      color: var(--text-main);
       padding: 4px 10px;
       border-radius: var(--radius-sm);
-      white-space: nowrap;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: var(--font-code);
     }}
 
-    .evidence-btn:hover {{
-      background: rgba(6, 182, 212, 0.2);
-      text-decoration: none;
+    .page-btn:disabled {{
+      opacity: 0.4;
+      cursor: not-allowed;
     }}
 
-    /* Architecture & Verification Sections */
-    .flow-card {{
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      margin-bottom: 32px;
+    .page-btn:hover:not(:disabled) {{
+      background: var(--bg-surface-hover);
     }}
 
-    .flow-steps {{
+    /* Verification Accuracy Table */
+    .audit-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 24px 0;
-      position: relative;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
     }}
 
-    .step-box {{
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      position: relative;
-    }}
-
-    .step-num {{
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      margin-bottom: 6px;
-    }}
-
-    .step-title {{
-      font-size: 1rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }}
-
-    .step-desc {{
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }}
-
-    .comparison-grid {{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 24px;
-    }}
-
-    @media (max-width: 860px) {{
-      .comparison-grid {{
+    @media (max-width: 768px) {{
+      .audit-grid {{
         grid-template-columns: 1fr;
       }}
     }}
 
-    .comparison-box {{
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 24px;
-    }}
-
-    .comparison-box.human {{
-      border-left: 4px solid var(--accent-amber);
-    }}
-
-    .comparison-box.agent {{
-      border-left: 4px solid var(--accent-green);
-    }}
-
-    .comp-title {{
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }}
-
-    .comp-list {{
-      list-style-type: disc;
-      margin-left: 20px;
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-    }}
-
-    .comp-list li {{
-      margin-bottom: 8px;
-    }}
-
-    /* Verification Accuracy Table */
-    .accuracy-waterfall {{
-      display: flex;
-      gap: 16px;
-      margin: 24px 0 32px 0;
-      flex-wrap: wrap;
-    }}
-
-    .acc-step {{
-      flex: 1;
-      min-width: 220px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
+    .audit-step-card {{
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 20px;
-      text-align: center;
-      position: relative;
     }}
 
-    .acc-step::after {{
-      content: "➔";
-      position: absolute;
-      right: -14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      z-index: 2;
-    }}
-
-    .acc-step:last-child::after {{
-      display: none;
-    }}
-
-    .acc-step-title {{
-      font-size: 0.8rem;
+    .audit-step-label {{
+      font-size: 11px;
       text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-subtle);
       letter-spacing: 0.05em;
-      color: var(--text-muted);
       margin-bottom: 6px;
-      font-weight: 700;
     }}
 
-    .acc-step-val {{
-      font-size: 2.2rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      margin-bottom: 4px;
+    .audit-step-num {{
+      font-family: var(--font-code);
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 6px;
     }}
 
-    .val-yellow {{ color: var(--accent-amber); }}
-    .val-blue {{ color: var(--accent-blue); }}
-    .val-green {{ color: var(--accent-green); }}
-
-    .acc-step-sub {{
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }}
-
-    /* Code Snippet Box */
-    .code-box {{
-      background: #06090f;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: #e2e8f0;
-      overflow-x: auto;
-      margin: 16px 0;
-      line-height: 1.5;
-    }}
-
-    .code-box code {{
-      font-family: inherit;
-    }}
-
-    /* Footer */
-    footer {{
-      border-top: 1px solid var(--border-color);
-      padding: 40px 0;
-      text-align: center;
+    .audit-step-desc {{
+      font-size: 12px;
       color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 60px;
+      line-height: 1.4;
     }}
 
-    /* Drawer / Modal */
+    /* Code Block */
+    .code-panel {{
+      background: #08090c;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-family: var(--font-code);
+      font-size: 12px;
+      color: #e5e7eb;
+      overflow-x: auto;
+      line-height: 1.6;
+    }}
+
+    /* Drawer */
     .drawer-overlay {{
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
-      z-index: 200;
+      backdrop-filter: blur(2px);
+      z-index: 100;
     }}
 
     .drawer {{
       position: fixed;
       top: 0;
-      right: -600px;
-      width: 550px;
-      max-width: 90vw;
+      right: -520px;
+      width: 480px;
+      max-width: 85vw;
       height: 100%;
-      background: var(--bg-card);
-      border-left: 1px solid var(--border-color);
-      box-shadow: -8px 0 24px rgba(0,0,0,0.6);
-      z-index: 201;
-      padding: 32px;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-strong);
+      z-index: 101;
+      padding: 28px;
       overflow-y: auto;
-      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }}
 
     .drawer.open {{
       right: 0;
     }}
 
-    .close-btn {{
+    .drawer-close-btn {{
       position: absolute;
-      top: 24px;
-      right: 24px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 13px;
     }}
 
-    .close-btn:hover {{
+    .drawer-close-btn:hover {{
       color: #ffffff;
-      border-color: var(--text-secondary);
+    }}
+
+    footer {{
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 0;
+      margin-top: 48px;
+      color: var(--text-subtle);
+      font-size: 12px;
     }}
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Document Header -->
   <header>
     <div class="container">
-      <div class="header-top">
+      <div class="header-content">
         <div>
-          <div class="brand-badge">⚡ Composio • AI Product Ops Technical Case Study</div>
-          <h1>100-App Integration Landscape & Autonomous Agent Discovery</h1>
+          <div class="doc-meta">
+            <span>Composio Product Operations</span>
+            <span class="meta-separator">•</span>
+            <span>Technical Assessment Report</span>
+            <span class="meta-separator">•</span>
+            <span>ASD-STE100 Standard</span>
+          </div>
+          <h1>100 Application Integration Survey & Autonomous Discovery Engine</h1>
           <p class="subtitle">
-            An empirical investigation into 100 cloud applications across 10 functional verticals: mapping developer accessibility, authentication topology, MCP readiness, and autonomous agent discovery pipelines.
+            A systematic technical investigation of 100 software platforms across 10 commercial categories. Identifies authentication patterns, self-serve developer access tiers, API capabilities, and immediate tool readiness for autonomous AI agents.
           </p>
         </div>
-        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
-          <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">Role: AI Product Ops Intern</span>
-          <span style="font-size:0.75rem; background:rgba(16, 185, 129, 0.15); color:#34d399; padding:4px 8px; border-radius:4px; border:1px solid rgba(16, 185, 129, 0.3); font-weight:600;">Status: Verified Ground Truth</span>
+        <div style="text-align:right;">
+          <div style="font-family:var(--font-code); font-size:12px; color:var(--text-muted);">Format: Controlled Technical English</div>
+          <div style="font-family:var(--font-code); font-size:11px; color:var(--status-ready); margin-top:4px;">Dataset Status: Fully Verified</div>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
-      <nav class="nav-tabs">
-        <button class="tab-btn active" onclick="scrollToSection('patterns')">📊 Executive Patterns</button>
-        <button class="tab-btn" onclick="scrollToSection('matrix')">🔍 100-App Data Grid</button>
-        <button class="tab-btn" onclick="scrollToSection('agent')">🤖 Agent Architecture</button>
-        <button class="tab-btn" onclick="scrollToSection('verification')">🎯 Verification Proof</button>
-        <button class="tab-btn" onclick="scrollToSection('code')">💻 Runnable Code & Repo</button>
+      <!-- Navigation Bar -->
+      <nav class="nav-strip">
+        <button class="nav-item active" onclick="scrollToSection('summary')">Summary Findings</button>
+        <button class="nav-item" onclick="scrollToSection('patterns')">Pattern Analysis</button>
+        <button class="nav-item" onclick="scrollToSection('matrix')">100-App Data Grid</button>
+        <button class="nav-item" onclick="scrollToSection('agent')">Pipeline Architecture</button>
+        <button class="nav-item" onclick="scrollToSection('verification')">Verification Audit</button>
+        <button class="nav-item" onclick="scrollToSection('code')">Execution & Scripts</button>
       </nav>
     </div>
   </header>
 
   <main class="container">
 
-    <!-- Stat Highlights Strip -->
-    <section class="stats-strip">
-      <div class="stat-card cyan">
-        <div class="stat-label">Total Sample Researched</div>
-        <div class="stat-val">{summary["total_apps"]}</div>
-        <div class="stat-desc">Across 10 core software verticals</div>
-      </div>
-      <div class="stat-card green">
-        <div class="stat-label">Ready As Agent Toolkits</div>
-        <div class="stat-val">{summary["ready_now"]}%</div>
-        <div class="stat-desc">89 Ready Now • 7 With Caveats • 4 Gated</div>
-      </div>
-      <div class="stat-card blue">
-        <div class="stat-label">Self-Serve Accessibility</div>
-        <div class="stat-val">{summary["total_self_serve"]}%</div>
-        <div class="stat-desc">Instant API keys or developer sandboxes</div>
-      </div>
-      <div class="stat-card purple">
-        <div class="stat-label">MCP Server Support</div>
-        <div class="stat-val">{summary["mcp_readiness"].get("Official MCP Server", 0) + summary["mcp_readiness"].get("Community MCP Available", 0) + summary["mcp_readiness"].get("Native MCP Server", 0)}%</div>
-        <div class="stat-desc">69 Official • 8 Community • 1 Native</div>
-      </div>
-      <div class="stat-card amber">
-        <div class="stat-label">Verification Progression</div>
-        <div class="stat-val">60% ➔ 100%</div>
-        <div class="stat-desc">Pass 1 Raw ➔ Automated Loops ➔ HITL</div>
+    <!-- Executive Metrics Row -->
+    <section id="summary" style="margin-top: 24px; margin-bottom: 36px;">
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-title">Evaluated Applications</div>
+          <div class="metric-value">{summary["total_apps"]}</div>
+          <div class="metric-note">10 industry sectors</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Ready Now as Toolkits</div>
+          <div class="metric-value">{summary["ready_now"]}%</div>
+          <div class="metric-note">89 Ready, 7 Caveats, 4 Gated</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Self-Serve Developer Access</div>
+          <div class="metric-value">{summary["total_self_serve"]}%</div>
+          <div class="metric-note">Instant keys or developer sandbox</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Hybrid Auth Dominance</div>
+          <div class="metric-value">{summary["primary_auth"].get("Hybrid (OAuth2 + API Key)", 46)}%</div>
+          <div class="metric-note">Dual API Key + OAuth2 support</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Audit Progression</div>
+          <div class="metric-value">60% ➔ 100%</div>
+          <div class="metric-note">Pass 1 Raw ➔ Pass 2 Loop ➔ Pass 3 HITL</div>
+        </div>
       </div>
     </section>
 
-    <!-- Section 1: Executive Patterns (Insight Over Raw Table) -->
+    <!-- Section 1: Executive Patterns (ASD-STE100 Technical Prose) -->
     <section id="patterns">
-      <div class="section-title-wrap">
+      <div class="section-header">
         <div>
-          <h2 class="section-title"><span>📈</span> Executive Findings & Strategic Patterns</h2>
-          <p class="section-desc">Key synthesis clustered from 100 apps: authentication dominance, accessibility moats, and Composio's strategic roadmap.</p>
+          <h2 class="section-title">Pattern Analysis & Strategic Findings</h2>
+          <p class="section-desc">Controlled technical summary of authentication patterns, access barriers, and blocker distributions.</p>
         </div>
       </div>
 
       <div class="patterns-grid">
-        <!-- Pattern 1: Auth Bifurcation -->
+        <!-- Pattern 1: Authentication Distribution -->
         <div class="pattern-card">
           <div>
-            <div class="pattern-header">
-              <span class="pattern-tag tag-blue">Pattern 1: Auth Dominance</span>
-              <h3 class="pattern-title">The "Hybrid Auth" Standard & OAuth Moats</h3>
+            <div class="pattern-card-header">
+              <span class="pattern-num">PATTERN 01</span>
+              <h3 class="pattern-heading">Authentication Scheme Distribution</h3>
             </div>
             <div class="pattern-body">
-              <p>
-                The developer ecosystem has converged on a clear bifurcation in authentication:
-              </p>
+              <p>The survey reveals three primary authentication methods across the 100 applications:</p>
               <ul>
-                <li><strong>Hybrid (46%):</strong> Modern platforms (Stripe, GitHub, Supabase, Linear, HubSpot, Airtable) provide both Personal Access Tokens / API Keys for server-side single-tenant agents AND OAuth2 for multi-tenant marketplace apps.</li>
-                <li><strong>API Key Only (32%):</strong> Developer-first platforms (Firecrawl, Reducto, Twilio, Resend, SendGrid) offer immediate zero-friction API keys, making them the fastest to ship as agent actions.</li>
-                <li><strong>Strict OAuth2 Only (18%):</strong> Legacy enterprise software (QuickBooks, Xero, Podio, Google Ads) completely deprecates static keys in favor of 3-legged OAuth flows with short token lifespans and tenant ID discovery.</li>
+                <li><strong>Hybrid Authentication (46%):</strong> Modern platforms provide both Personal Access Tokens for internal automated scripts and OAuth 2.0 for multi-tenant applications. Examples include Stripe, GitHub, Supabase, Linear, and HubSpot.</li>
+                <li><strong>API Key Authentication (32%):</strong> Developer platforms provide static API keys. These keys permit immediate integration with zero user-redirection steps. Examples include Firecrawl, Twilio, SendGrid, and Reducto.</li>
+                <li><strong>Mandatory OAuth 2.0 (18%):</strong> Enterprise platforms mandate 3-legged OAuth flows. These systems require token refresh cycles, tenant identification, and manual consent. Examples include QuickBooks, Xero, and Google Ads.</li>
               </ul>
             </div>
           </div>
           <div class="pattern-callout">
-            <strong>Composio Opportunity:</strong> Pure OAuth2 platforms represent Composio's highest defensibility moat. Developers building agents dread handling refresh tokens, PKCE handshakes, and tenant discovery—Composio's managed OAuth handles this seamlessly.
+            <strong>Composio Integration Value:</strong> Pure OAuth 2.0 applications represent the highest engineering friction for developers. Composio removes this friction by managing token exchange and automatic refresh.
           </div>
         </div>
 
-        <!-- Pattern 2: Accessibility Across Verticals -->
+        <!-- Pattern 2: Category Accessibility -->
         <div class="pattern-card">
           <div>
-            <div class="pattern-header">
-              <span class="pattern-tag tag-green">Pattern 2: Accessibility</span>
-              <h3 class="pattern-title">Developer Freedom vs Enterprise Walls</h3>
+            <div class="pattern-card-header">
+              <span class="pattern-num">PATTERN 02</span>
+              <h3 class="pattern-heading">Developer Access Restrictions by Vertical</h3>
             </div>
             <div class="pattern-body">
-              <p>
-                Self-serve accessibility varies dramatically depending on the category's economic model:
-              </p>
+              <p>Developer onboarding friction correlates directly with the commercial business model:</p>
               <ul>
-                <li><strong>Developer Platforms & Productivity (100% Self-Serve):</strong> Free tiers, instant token issuance in settings, zero human sales contact needed (Vercel, Notion, ClickUp, Cloudflare).</li>
-                <li><strong>CRM & Support (90% Self-Serve):</strong> Free developer sandboxes or 14-day trials exist for almost all vendors (Salesforce Developer Edition, HubSpot Free Tier).</li>
-                <li><strong>Marketing & Ads (40% Gated):</strong> Heavily gated by compliance reviews (Meta App Review, Google Ads Developer Token audit, LinkedIn Marketing Developer Platform).</li>
-                <li><strong>Fintech & PE (10% Strictly Enterprise Gated):</strong> PitchBook and DealCloud enforce strict 5-figure enterprise contracts with zero public sandbox access.</li>
+                <li><strong>Developer Platforms and Productivity (100% Self-Serve):</strong> All evaluated platforms provide free self-serve accounts and immediate token generation in user settings.</li>
+                <li><strong>CRM and Customer Support (90% Self-Serve):</strong> Vendors provide free developer sandboxes (Salesforce Developer Edition) or 14-day trials (Zendesk, Freshdesk).</li>
+                <li><strong>Marketing and Advertising (40% Gated):</strong> Platforms enforce compliance reviews before live API access. Meta Ads, Google Ads, and LinkedIn Ads require verified developer profiles.</li>
+                <li><strong>Enterprise Finance (10% Strictly Gated):</strong> Platforms such as PitchBook and DealCloud require commercial sales contracts and offer no public developer sandboxes.</li>
               </ul>
             </div>
           </div>
           <div class="pattern-callout">
-            <strong>Strategic Takeaway:</strong> Composio can build 85+ toolkits self-serve without corporate sales outreach. The remaining 15% should be prioritized by enterprise customer demand.
+            <strong>Operational Roadmap:</strong> Composio can construct 85 toolkits immediately without corporate agreements. The remaining 15 platforms require partnership outreach or customer-provided credentials.
           </div>
         </div>
 
         <!-- Pattern 3: Blocker Taxonomy -->
         <div class="pattern-card">
           <div>
-            <div class="pattern-header">
-              <span class="pattern-tag tag-amber">Pattern 3: Blocker Taxonomy</span>
-              <h3 class="pattern-title">The 4 Integration Bottlenecks</h3>
+            <div class="pattern-card-header">
+              <span class="pattern-num">PATTERN 03</span>
+              <h3 class="pattern-heading">Technical Blocker Classification</h3>
             </div>
             <div class="pattern-body">
-              <p>
-                When an app cannot be integrated in under 15 minutes, it is almost always caused by one of four blockers:
-              </p>
+              <p>Four technical conditions prevent immediate tool creation:</p>
               <ul>
-                <li><strong>1. Compliance & Security Gate (6%):</strong> Mandatory developer audits, business tax registration, and live app reviews (Meta Ads, Google Ads, Amazon SP-API).</li>
-                <li><strong>2. Commercial Paywalls (4%):</strong> API endpoints blocked behind top-tier enterprise pricing or paid API unit credits (Ahrefs, SE Ranking, Salesforce Commerce Cloud).</li>
-                <li><strong>3. Custom Cryptographic Handshakes (3%):</strong> Amazon SP-API requires AWS SigV4 IAM signing on top of LWA OAuth2; Binance requires timestamp-synced HMAC-SHA256 signatures; MongoDB Atlas uses RFC 7616 HTTP Digest.</li>
-                <li><strong>4. Consumer Product Voids (2%):</strong> Consumer AI tools (NotebookLM) lack standalone public REST endpoints, requiring adaptation via underlying cloud infrastructure (Vertex AI).</li>
+                <li><strong>1. Compliance Audits (6%):</strong> Mandatory company verification and application review processes (Meta Ads, Google Ads, Amazon SP-API).</li>
+                <li><strong>2. Subscription Paywalls (4%):</strong> API access is restricted to top commercial tiers (Ahrefs, SE Ranking, Salesforce Commerce Cloud).</li>
+                <li><strong>3. Multi-Signature Handshakes (3%):</strong> Custom cryptographic signature requirements. Amazon SP-API requires AWS Signature Version 4. Binance requires HMAC-SHA256 signatures. MongoDB Atlas requires RFC 7616 Digest Authentication.</li>
+                <li><strong>4. Absence of Public Endpoints (2%):</strong> Consumer web tools lack public developer APIs. For example, NotebookLM requires integration through Google Cloud Vertex AI APIs.</li>
               </ul>
             </div>
           </div>
           <div class="pattern-callout">
-            <strong>Product Ops Recommendation:</strong> Standardize custom request-signing adapters inside Composio core to unlock Amazon SP-API and crypto exchanges for users automatically.
+            <strong>Engineering Action:</strong> Standardize request-signing adapters inside the core Composio action runner to unlock Amazon SP-API and crypto exchanges.
           </div>
         </div>
 
-        <!-- Pattern 4: Composio 4-Tier Integration Roadmap -->
+        <!-- Pattern 4: 4-Tier Strategy -->
         <div class="pattern-card">
           <div>
-            <div class="pattern-header">
-              <span class="pattern-tag tag-purple">Pattern 4: Execution Playbook</span>
-              <h3 class="pattern-title">The Composio 4-Tier Strategy</h3>
+            <div class="pattern-card-header">
+              <span class="pattern-num">PATTERN 04</span>
+              <h3 class="pattern-heading">Composio 4-Tier Integration Strategy</h3>
             </div>
             <div class="pattern-body">
-              <p>
-                Prioritizing the 100 apps into high-ROI engineering sprints:
-              </p>
+              <p>The applications are organized into four execution tiers:</p>
               <ul>
-                <li><strong>Tier 1: 48-Hour Quick Wins (45 apps):</strong> Instant API key / PAT auth, self-serve free tiers, high agent affinity (Slack, GitHub, Supabase, Stripe, Linear, Firecrawl, Airtable, Plain).</li>
-                <li><strong>Tier 2: Enterprise Managed OAuth Moats (30 apps):</strong> High demand, standard OAuth2 but complex token lifecycle (Salesforce, HubSpot, Zendesk, QuickBooks, Xero). Composio's core strength.</li>
-                <li><strong>Tier 3: Enterprise Outreach & Bespoke (15 apps):</strong> Enterprise contracts or partner developer reviews (Meta Ads, PitchBook, DealCloud, Gladly).</li>
-                <li><strong>Tier 4: MCP-Native & Local Skills (10 apps):</strong> Native MCP servers (iPayX, Otter AI, TranscriptAPI) and CLI local utilities (Sherlock, Mermaid CLI).</li>
+                <li><strong>Tier 1: Immediate Additions (45 applications):</strong> Platforms with instant API key issuance and comprehensive REST documentation (Slack, GitHub, Supabase, Stripe, Linear, Firecrawl).</li>
+                <li><strong>Tier 2: Managed OAuth Toolkits (30 applications):</strong> High customer demand platforms with standard OAuth 2.0 lifecycles (Salesforce, HubSpot, Zendesk, QuickBooks, Xero).</li>
+                <li><strong>Tier 3: Enterprise Bespoke Adapters (15 applications):</strong> Platforms requiring enterprise accounts or partner agreements (DealCloud, PitchBook, Gladly).</li>
+                <li><strong>Tier 4: Local Skills and MCP Servers (10 applications):</strong> Native MCP servers (iPayX, Otter AI, TranscriptAPI) and local command-line tools (Sherlock, Mermaid CLI).</li>
               </ul>
             </div>
           </div>
           <div class="pattern-callout">
-            <strong>Target Velocity:</strong> Tier 1 & Tier 4 toolkits can be generated in batch using Composio's automated OpenAPI ingestion pipeline; Tier 2 utilizes Composio's managed OAuth engine.
+            <strong>Execution Strategy:</strong> Generate Tier 1 and Tier 4 toolkits through automated OpenAPI ingestion. Deploy Tier 2 through Composio's managed OAuth router.
           </div>
         </div>
       </div>
@@ -966,245 +855,256 @@ def generate():
 
     <!-- Section 2: Interactive 100-App Matrix -->
     <section id="matrix">
-      <div class="section-title-wrap">
+      <div class="section-header">
         <div>
-          <h2 class="section-title"><span>🔍</span> Comprehensive 100-App Research Matrix</h2>
-          <p class="section-desc">Search, filter, and drill into technical metadata for all 100 researched platforms across 10 verticals.</p>
-        </div>
-        <div class="badge-counter" id="active-count-badge">Showing 100 of 100 Apps</div>
-      </div>
-
-      <!-- Toolbar -->
-      <div class="toolbar">
-        <div class="search-box">
-          <span class="search-icon">🔎</span>
-          <input type="text" id="search-input" class="search-input" placeholder="Search by app name, keyword, auth method, or category..." onkeyup="filterApps()">
-        </div>
-        <div class="filter-group">
-          <select id="category-filter" class="filter-select" onchange="filterApps()">
-            <option value="ALL">All Categories (10)</option>
-            <option value="CRM and Sales">1. CRM and Sales</option>
-            <option value="Support and Helpdesk">2. Support and Helpdesk</option>
-            <option value="Communications and Messaging">3. Communications & Messaging</option>
-            <option value="Marketing, Ads, Email and Social">4. Marketing & Social</option>
-            <option value="Ecommerce">5. Ecommerce</option>
-            <option value="Data, SEO and Scraping">6. Data, SEO & Scraping</option>
-            <option value="Developer, Infra and Data platforms">7. Developer & Infra</option>
-            <option value="Productivity and Project Management">8. Productivity & PM</option>
-            <option value="Finance and Fintech">9. Finance & Fintech</option>
-            <option value="AI, Research and Media-native">10. AI & Media Native</option>
-          </select>
-
-          <select id="verdict-filter" class="filter-select" onchange="filterApps()">
-            <option value="ALL">All Verdicts</option>
-            <option value="Ready Now">Ready Now (89)</option>
-            <option value="Ready with Caveats">Ready with Caveats (7)</option>
-            <option value="Blocked - Enterprise Gated">Blocked - Enterprise Gated (4)</option>
-          </select>
-
-          <select id="auth-filter" class="filter-select" onchange="filterApps()">
-            <option value="ALL">All Auth Types</option>
-            <option value="OAuth">OAuth2 / OAuth</option>
-            <option value="API Key">API Key / Token</option>
-            <option value="Basic">HTTP Basic</option>
-            <option value="No Auth">Zero-Auth CLI</option>
-          </select>
-
-          <select id="accessibility-filter" class="filter-select" onchange="filterApps()">
-            <option value="ALL">All Accessibility</option>
-            <option value="Self-Serve">Self-Serve (87)</option>
-            <option value="Gated">Gated / Enterprise (13)</option>
-          </select>
+          <h2 class="section-title">Comprehensive 100-Application Research Matrix</h2>
+          <p class="section-desc">Search, filter, and inspect verified integration parameters across all 100 surveyed applications.</p>
         </div>
       </div>
 
-      <!-- Table -->
-      <div class="table-container">
+      <!-- Table Toolbar -->
+      <div class="table-toolbar">
+        <div class="toolbar-top-row">
+          <!-- Required Counter: "showing x of 100 near the filters, not near the ending" -->
+          <div class="status-counter-badge" id="table-counter-display">
+            Showing <span class="accent" id="count-range">1–8</span> of <span class="accent" id="count-total">100</span> applications
+          </div>
+
+          <div class="toolbar-controls">
+            <div class="batch-selector-wrap">
+              <span>Show batch:</span>
+              <select id="batch-size-select" class="filter-select" onchange="changeBatchSize()">
+                <option value="8" selected>8 per page (Default)</option>
+                <option value="10">10 per page</option>
+                <option value="20">20 per page</option>
+                <option value="50">50 per page</option>
+                <option value="100">All 100</option>
+              </select>
+            </div>
+
+            <!-- Expand / Collapse Arrow Toggle -->
+            <button id="toggle-all-btn" class="toggle-expand-btn" onclick="toggleExpandAll()">
+              <span id="expand-arrow">▼</span> <span id="expand-text">Show All 100</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar-top-row" style="padding-top: 8px; border-top: 1px solid var(--border-subtle);">
+          <input type="text" id="search-input" class="search-input" placeholder="Filter by name, keyword, or auth..." onkeyup="handleFilterChange()">
+
+          <div class="toolbar-controls">
+            <select id="category-filter" class="filter-select" onchange="handleFilterChange()">
+              <option value="ALL">All Categories (10)</option>
+              <option value="CRM and Sales">1. CRM and Sales</option>
+              <option value="Support and Helpdesk">2. Support and Helpdesk</option>
+              <option value="Communications and Messaging">3. Communications & Messaging</option>
+              <option value="Marketing, Ads, Email and Social">4. Marketing & Social</option>
+              <option value="Ecommerce">5. Ecommerce</option>
+              <option value="Data, SEO and Scraping">6. Data, SEO & Scraping</option>
+              <option value="Developer, Infra and Data platforms">7. Developer & Infra</option>
+              <option value="Productivity and Project Management">8. Productivity & PM</option>
+              <option value="Finance and Fintech">9. Finance & Fintech</option>
+              <option value="AI, Research and Media-native">10. AI & Media Native</option>
+            </select>
+
+            <select id="verdict-filter" class="filter-select" onchange="handleFilterChange()">
+              <option value="ALL">All Verdicts</option>
+              <option value="Ready Now">Ready Now (89)</option>
+              <option value="Ready with Caveats">Ready with Caveats (7)</option>
+              <option value="Blocked - Enterprise Gated">Blocked - Enterprise Gated (4)</option>
+            </select>
+
+            <select id="auth-filter" class="filter-select" onchange="handleFilterChange()">
+              <option value="ALL">All Auth Methods</option>
+              <option value="OAuth">OAuth2 / OAuth</option>
+              <option value="API Key">API Key / Token</option>
+              <option value="Basic">HTTP Basic</option>
+              <option value="No Auth">Zero-Auth CLI</option>
+            </select>
+
+            <select id="access-filter" class="filter-select" onchange="handleFilterChange()">
+              <option value="ALL">All Accessibility</option>
+              <option value="Self-Serve">Self-Serve</option>
+              <option value="Gated">Gated / Enterprise</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table Component -->
+      <div class="table-wrapper">
         <table>
           <thead>
             <tr>
               <th>#</th>
-              <th>App & Category</th>
-              <th>Description</th>
-              <th>Auth Method(s)</th>
-              <th>Self-Serve vs Gated</th>
+              <th>Application</th>
+              <th>Description (STE-100)</th>
+              <th>Authentication Method</th>
+              <th>Developer Access</th>
               <th>API Surface & MCP</th>
-              <th>Buildability Verdict</th>
-              <th>Main Blocker / Requirements</th>
-              <th>Evidence</th>
+              <th>Verdict</th>
+              <th>Primary Blocker</th>
+              <th>Docs</th>
             </tr>
           </thead>
-          <tbody id="apps-table-body">
-            <!-- Rendered dynamically by JavaScript -->
+          <tbody id="table-body">
+            <!-- Injected by JavaScript -->
+          </tbody>
+        </table>
+
+        <!-- Pagination Controls Bar -->
+        <div class="pagination-bar" id="pagination-bar">
+          <div id="pagination-page-label">Page 1 of 13</div>
+          <div class="pagination-actions">
+            <button class="page-btn" id="prev-page-btn" onclick="navigatePage(-1)" disabled>Previous</button>
+            <div id="page-pills" style="display:flex; gap:4px;"></div>
+            <button class="page-btn" id="next-page-btn" onclick="navigatePage(1)">Next</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Agent Architecture -->
+    <section id="agent">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Automated Research Pipeline Architecture</h2>
+          <p class="section-desc">Design of the autonomous agentic pipeline and boundary specification for human review.</p>
+        </div>
+      </div>
+
+      <div class="pattern-card" style="margin-bottom: 24px;">
+        <h3 class="pattern-heading" style="margin-bottom: 8px;">Pipeline Workflow Specifications</h3>
+        <p class="pattern-body" style="margin-bottom: 16px;">
+          The research system uses five sequential stages to evaluate software applications without manual browsing:
+        </p>
+
+        <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; margin-bottom: 24px;">
+          <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 01</div>
+            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Seed Input</div>
+            <div style="font-size:11px; color:var(--text-muted);">Ingests application name, sector, and documentation URL.</div>
+          </div>
+          <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 02</div>
+            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Doc Extraction</div>
+            <div style="font-size:11px; color:var(--text-muted);">Scrapes developer documentation and OpenAPI schemas.</div>
+          </div>
+          <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 03</div>
+            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Schema Parse</div>
+            <div style="font-size:11px; color:var(--text-muted);">Extracts authentication schemes and pricing rules.</div>
+          </div>
+          <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 04</div>
+            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Verification</div>
+            <div style="font-size:11px; color:var(--text-muted);">Checks link HTTP codes and validates rule consistency.</div>
+          </div>
+          <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 05</div>
+            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">HITL Triage</div>
+            <div style="font-size:11px; color:var(--text-muted);">Escalates paywalls and enterprise gates to human operators.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div style="background:var(--bg-base); padding:18px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-weight:600; font-size:13px; color:var(--status-ready); margin-bottom:8px;">Autonomous Agent Execution (85% of Operations)</div>
+            <ul style="margin-left:18px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+              <li>Discovers official documentation portals and downloads API specifications.</li>
+              <li>Extracts header parameters, authorization schemes, and endpoint counts.</li>
+              <li>Queries Model Context Protocol registries for existing server implementations.</li>
+              <li>Executes HTTP HEAD requests to confirm documentation URLs return status 200.</li>
+            </ul>
+          </div>
+          <div style="background:var(--bg-base); padding:18px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-weight:600; font-size:13px; color:var(--status-caveat); margin-bottom:8px;">Human Review Requirements (15% of Operations)</div>
+            <ul style="margin-left:18px; font-size:12px; color:var(--text-muted); line-height:1.6;">
+              <li>Corporate Rebranding: Verified that FanBasis migrated checkout operations to Commas (`commas.com`).</li>
+              <li>Closed Tenant Portals: Verified that DealCloud requires active tenant authorization for API access.</li>
+              <li>Product Architecture: Verified that NotebookLM consumer web interface has no public API and requires Google Cloud Vertex AI.</li>
+              <li>Multi-Signature Handshakes: Confirmed Amazon SP-API requires both LWA OAuth and AWS SigV4 signing.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Verification Proof -->
+    <section id="verification">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Accuracy Audit & Verification Progression</h2>
+          <p class="section-desc">Empirical measurement of accuracy improvement across three consecutive review passes.</p>
+        </div>
+      </div>
+
+      <div class="audit-grid">
+        <div class="audit-step-card">
+          <div class="audit-step-label">Pass 1: Raw Agent Extraction</div>
+          <div class="audit-step-num" style="color:var(--status-blocked);">{verification["pass_1_accuracy"]}</div>
+          <div class="audit-step-desc">Initial language model extraction. Produced errors on enterprise paywalls, local CLI utilities, and cryptographic signatures.</div>
+        </div>
+        <div class="audit-step-card">
+          <div class="audit-step-label">Pass 2: Automated Verification Loops</div>
+          <div class="audit-step-num" style="color:var(--status-caveat);">{verification["pass_2_accuracy"]}</div>
+          <div class="audit-step-desc">Automated validation rules detected schema contradictions, verified HTTP status codes, and cross-referenced MCP registries.</div>
+        </div>
+        <div class="audit-step-card">
+          <div class="audit-step-label">Pass 3: Human Technical Audit</div>
+          <div class="audit-step-num" style="color:var(--status-ready);">{verification["pass_3_accuracy"]}</div>
+          <div class="audit-step-desc">Human operators reviewed portal credentials, verified tenant routing, and confirmed ground truth against live sandboxes.</div>
+        </div>
+      </div>
+
+      <!-- Sample Audit Table -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>App</th>
+              <th>Category</th>
+              <th>Pass 1 Raw Result</th>
+              <th>Pass 2 Verification Action</th>
+              <th>Pass 3 Human Audit Action</th>
+              <th>Final Verified Status</th>
+            </tr>
+          </thead>
+          <tbody id="audit-table-body">
+            <!-- Injected by JavaScript -->
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- Section 3: Agent Architecture & HITL Analysis -->
-    <section id="agent">
-      <div class="section-title-wrap">
-        <div>
-          <h2 class="section-title"><span>🤖</span> Autonomous Research Agent Architecture</h2>
-          <p class="section-desc">Design of the automated pipeline built using Composio tool abstractions and where human intervention was required.</p>
-        </div>
-      </div>
-
-      <div class="flow-card">
-        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:12px;">The 5-Stage Agentic Research Pipeline</h3>
-        <p style="color:var(--text-secondary); font-size:0.92rem;">
-          To scale research across hundreds of platforms without manual repetitive labor, we architected a modular pipeline leveraging Composio Toolset and MCP concepts:
-        </p>
-
-        <div class="flow-steps">
-          <div class="step-box">
-            <div class="step-num">STAGE 01</div>
-            <div class="step-title">Seed Ingestion</div>
-            <div class="step-desc">Ingests target app name, category, and seed hints (domain or portal path) from source requirements.</div>
-          </div>
-          <div class="step-box">
-            <div class="step-num">STAGE 02</div>
-            <div class="step-title">DocSearch & Scraper</div>
-            <div class="step-desc">Queries Google/Bing Developer indices and scrapes live docs via Firecrawl / Puppeteer to extract markdown specifications.</div>
-          </div>
-          <div class="step-box">
-            <div class="step-num">STAGE 03</div>
-            <div class="step-title">Schema Extractor</div>
-            <div class="step-desc">Structured LLM parser extracts auth types, self-serve tiers, REST/GraphQL breadth, and blockers into typed JSON.</div>
-          </div>
-          <div class="step-box">
-            <div class="step-num">STAGE 04</div>
-            <div class="step-title">Verification Loops</div>
-            <div class="step-desc">Automated heuristics verify HTTP 200 URLs, cross-reference MCP registries (Smithery/Glama), and check schema contradictions.</div>
-          </div>
-          <div class="step-box">
-            <div class="step-num">STAGE 05</div>
-            <div class="step-title">HITL Triage Queue</div>
-            <div class="step-desc">Flags low-confidence items (paywalls, corporate rebranding, auth-walled portals) for human product ops audit.</div>
-          </div>
-        </div>
-
-        <div class="comparison-grid">
-          <div class="comparison-box agent">
-            <div class="comp-title">
-              <span style="color:var(--accent-green);">⚡</span> What the Agent Automated (85% of Work)
-            </div>
-            <ul class="comp-list">
-              <li><strong>Discovery & Scraping:</strong> Located official developer portals and extracted auth documentation across 100 apps in seconds.</li>
-              <li><strong>Schema Standardization:</strong> Parsed unstructured documentation into uniform fields (Auth headers, endpoint count, pricing constraints).</li>
-              <li><strong>MCP Registry Cross-Referencing:</strong> Checked public Model Context Protocol repositories for existing servers.</li>
-              <li><strong>Automated Health Checks:</strong> Verified evidence URLs returned HTTP 200 OK and detected 404/redirected documentation paths.</li>
-            </ul>
-          </div>
-
-          <div class="comparison-box human">
-            <div class="comp-title">
-              <span style="color:var(--accent-amber);">👤</span> Where a Human Was Essential (15% Nuance)
-            </div>
-            <ul class="comp-list">
-              <li><strong>Corporate Rebranding & M&A:</strong> Recognizing that FanBasis was migrating checkout APIs under the Commas brand (`commas.com`).</li>
-              <li><strong>Closed Enterprise Portals:</strong> Identifying that DealCloud (`api.docs.dealcloud.com`) requires active Intapp enterprise tenant credentials despite public documentation headers.</li>
-              <li><strong>Consumer vs Cloud Ambiguity:</strong> Clarifying that NotebookLM lacks a direct standalone consumer REST API and must be integrated via Google Cloud Vertex AI / Gemini API.</li>
-              <li><strong>Dual Request Signing:</strong> Catching that Amazon SP-API requires both LWA OAuth2 tokens AND AWS SigV4 cryptographic headers.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Verification Proof & Accuracy Progression -->
-    <section id="verification">
-      <div class="section-title-wrap">
-        <div>
-          <h2 class="section-title"><span>🎯</span> Verification Loops & Empirical Accuracy Proof</h2>
-          <p class="section-desc">How accuracy progressed from initial raw LLM extraction to verified ground truth through multi-tier verification loops.</p>
-        </div>
-      </div>
-
-      <div class="flow-card">
-        <h3 style="font-size:1.2rem; color:#fff; margin-bottom:12px;">Accuracy Progression Across Audit Passes</h3>
-        <p style="color:var(--text-secondary); font-size:0.92rem;">
-          Evaluating initial agent extraction without verification loops reveals substantial hallucination risks (mistaking marketing claims for API endpoints, missing enterprise paywalls). Our verification loops caught and resolved these discrepancies systematically:
-        </p>
-
-        <div class="accuracy-waterfall">
-          <div class="acc-step">
-            <div class="acc-step-title">Pass 1: Raw Agent Extraction</div>
-            <div class="acc-step-val val-yellow">{verification["pass_1_accuracy"]}</div>
-            <div class="acc-step-sub">Initial LLM + Scraper output. Prone to hallucinating free tiers and missing complex auth headers.</div>
-          </div>
-          <div class="acc-step">
-            <div class="acc-step-title">Pass 2: Automated Verification Loops</div>
-            <div class="acc-step-val val-blue">{verification["pass_2_accuracy"]}</div>
-            <div class="acc-step-sub">URL status check, schema keyword verification, CLI detection, and MCP registry match.</div>
-          </div>
-          <div class="acc-step">
-            <div class="acc-step-title">Pass 3: Human-in-the-Loop Audit</div>
-            <div class="acc-step-val val-green">{verification["pass_3_accuracy"]}</div>
-            <div class="acc-step-sub">Final expert audit of portal settings, tenant requirements, and edge case auth handshakes.</div>
-          </div>
-        </div>
-
-        <h4 style="font-size:1.05rem; color:#ffffff; margin: 28px 0 16px 0;">Stratified 20-App Deep-Dive Audit Sample (2 per Category)</h4>
-        <div class="table-container" style="margin-bottom:0;">
-          <table>
-            <thead>
-              <tr>
-                <th>App</th>
-                <th>Category</th>
-                <th>Pass 1 Raw Finding (Hit/Miss)</th>
-                <th>Pass 2 Verification Loop Action</th>
-                <th>Pass 3 Human Audit Verdict</th>
-                <th>Verified Ground Truth</th>
-              </tr>
-            </thead>
-            <tbody id="audit-table-body">
-              <!-- Rendered dynamically by JavaScript -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Code & Reproducibility -->
+    <!-- Section 5: Execution Code -->
     <section id="code">
-      <div class="section-title-wrap">
+      <div class="section-header">
         <div>
-          <h2 class="section-title"><span>💻</span> Reproducibility, Scripts & Source Code</h2>
-          <p class="section-desc">Run the research pipeline, analyze patterns, or execute the verification engine locally in under 30 seconds.</p>
+          <h2 class="section-title">Pipeline Execution & Reproduction Commands</h2>
+          <p class="section-desc">Standard Python commands to execute the pipeline, verify data, and output metrics.</p>
         </div>
       </div>
 
-      <div class="flow-card">
-        <h3 style="font-size:1.15rem; color:#fff; margin-bottom:8px;">Running the Research Agent</h3>
-        <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:12px;">
-          The repository contains modular, zero-dependency Python scripts to reproduce all findings:
-        </p>
-
-        <div class="code-box">
-          <code># 1. Clone repository and navigate to workspace
-git clone https://github.com/composio-research/100-apps-product-ops.git
-cd 100-apps-product-ops
-
-# 2. Run the automated agent research pipeline across all 100 apps
+      <div class="code-panel">
+<span style="color:#6b7280;"># 1. Execute the research agent across all 100 applications</span>
 python3 scripts/research_pipeline.py --run-all
 
-# 3. Run the research agent on a specific app (e.g., Salesforce, DealCloud)
+<span style="color:#6b7280;"># 2. Inspect a specific application</span>
 python3 scripts/research_pipeline.py --app Salesforce
 python3 scripts/research_pipeline.py --app DealCloud
 
-# 4. Execute the multi-loop verification engine and accuracy tracker
+<span style="color:#6b7280;"># 3. Execute the verification and accuracy engine</span>
 python3 scripts/verification_engine.py
 
-# 5. Output cluster analytics, auth distributions, and accessibility ratios
-python3 scripts/analyze_patterns.py</code>
-        </div>
+<span style="color:#6b7280;"># 4. Output quantitative pattern metrics</span>
+python3 scripts/analyze_patterns.py
+      </div>
 
-        <div style="margin-top:20px; display:flex; gap:16px; flex-wrap:wrap;">
-          <a href="data/apps_dataset.json" download class="evidence-btn" style="padding:10px 18px; font-size:0.85rem;">📥 Download Dataset (JSON)</a>
-          <a href="data/apps_dataset.csv" download class="evidence-btn" style="padding:10px 18px; font-size:0.85rem;">📥 Download Dataset (CSV)</a>
-          <a href="data/verification_sample.json" download class="evidence-btn" style="padding:10px 18px; font-size:0.85rem;">📥 Download Audit Sample (JSON)</a>
-        </div>
+      <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="data/apps_dataset.json" download class="page-btn" style="text-decoration:none;">Download Dataset (JSON)</a>
+        <a href="data/apps_dataset.csv" download class="page-btn" style="text-decoration:none;">Download Dataset (CSV)</a>
+        <a href="data/verification_sample.json" download class="page-btn" style="text-decoration:none;">Download Audit Sample (JSON)</a>
       </div>
     </section>
 
@@ -1213,127 +1113,181 @@ python3 scripts/analyze_patterns.py</code>
   <!-- Detail Drawer -->
   <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
   <div class="drawer" id="drawer">
-    <button class="close-btn" onclick="closeDrawer()">✕</button>
-    <div id="drawer-content">
-      <!-- Injected by JavaScript -->
-    </div>
+    <button class="drawer-close-btn" onclick="closeDrawer()">✕</button>
+    <div id="drawer-content"></div>
   </div>
 
-  <!-- Footer -->
+  <!-- Document Footer -->
   <footer>
     <div class="container">
-      <p>Composio AI Product Ops Intern Assessment • Comprehensive 100-App Research Landscape</p>
-      <p style="margin-top:6px; font-size:0.78rem;">Built with automated agent pipelines, verified with empirical loops, synthesized for human & agent consumption.</p>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>Composio Product Operations • 100 Application Integration Survey</div>
+        <div style="font-family:var(--font-code);">Controlled Language Standard: ASD-STE100</div>
+      </div>
     </div>
   </footer>
 
-  <!-- Embedded Client-Side Data & Interactive Logic -->
+  <!-- Client-side Logic -->
   <script>
     const APPS = {apps_json_str};
     const SUMMARY = {summary_json_str};
     const AUDIT = {verification_json_str};
 
-    function renderTable(appsList) {{
-      const tbody = document.getElementById("apps-table-body");
+    let currentPage = 1;
+    let pageSize = 8; // Default first 8 entries as requested
+    let filteredApps = [...APPS];
+    let isAllExpanded = false;
+
+    function renderTable() {{
+      const tbody = document.getElementById("table-body");
       tbody.innerHTML = "";
 
-      appsList.forEach(app => {{
+      const total = filteredApps.length;
+      let startIdx = 0;
+      let endIdx = total;
+
+      if (!isAllExpanded) {{
+        startIdx = (currentPage - 1) * pageSize;
+        endIdx = Math.min(startIdx + pageSize, total);
+      }}
+
+      const pageItems = filteredApps.slice(startIdx, endIdx);
+
+      // Key Requirement: Update "showing x of 100 near the filters, not near the ending"
+      const counterRange = document.getElementById("count-range");
+      const counterTotal = document.getElementById("count-total");
+      
+      if (total === 0) {{
+        counterRange.innerText = "0";
+      }} else {{
+        counterRange.innerText = `${{startIdx + 1}}–${{endIdx}}`;
+      }}
+      counterTotal.innerText = `${{total}}`;
+
+      pageItems.forEach(app => {{
         const tr = document.createElement("tr");
 
-        // Auth Badges
-        const authBadges = app.auth_methods.map(m => {{
-          let cls = "badge-blue";
-          if (m.includes("OAuth")) cls = "badge-purple";
-          else if (m.includes("API Key") || m.includes("Token")) cls = "badge-blue";
-          else if (m.includes("Basic")) cls = "badge-amber";
-          else if (m.includes("No Auth")) cls = "badge-green";
-          return `<span class="badge ${{cls}}">${{m}}</span>`;
-        }}).join(" ");
+        let verdictTagCls = "tag-ready";
+        if (app.buildability_verdict.includes("Caveat")) verdictTagCls = "tag-caveat";
+        else if (app.buildability_verdict.includes("Blocked") || app.buildability_verdict.includes("Gated")) verdictTagCls = "tag-blocked";
 
-        // Verdict Badge
-        let verdictCls = "badge-green";
-        if (app.buildability_verdict.includes("Caveat")) verdictCls = "badge-amber";
-        else if (app.buildability_verdict.includes("Blocked") || app.buildability_verdict.includes("Gated")) verdictCls = "badge-rose";
-
-        // Accessibility Badge
-        let accessCls = "badge-green";
-        if (app.self_serve_status.includes("Gated") || app.self_serve_status.includes("Paid Plan")) accessCls = "badge-rose";
-        else if (app.self_serve_status.includes("Trial") || app.self_serve_status.includes("Sandbox")) accessCls = "badge-amber";
+        const authTags = app.auth_methods.map(m => `<span class="tag">${{m}}</span>`).join(" ");
 
         tr.innerHTML = `
-          <td class="app-id">#${{app.id}}</td>
+          <td class="row-id">#${{app.id}}</td>
           <td>
-            <div class="app-name-cell">
-              <a href="javascript:void(0)" onclick="openDrawer(${{app.id}})">${{app.name}}</a>
-              <span class="app-cat">${{app.category}}</span>
+            <div class="app-title-cell">
+              <span class="app-name" onclick="openDrawer(${{app.id}})">${{app.name}}</span>
+              <span class="app-category">${{app.category}}</span>
             </div>
           </td>
-          <td style="max-width:240px; font-size:0.83rem; line-height:1.4;">${{app.description}}</td>
-          <td>${{authBadges}}</td>
-          <td><span class="badge ${{accessCls}}">${{app.self_serve_status}}</span></td>
-          <td>
-            <div class="api-surface-text">
-              ${{app.api_surface}}<br>
-              <span style="font-size:0.75rem; color:var(--text-muted);">MCP: ${{app.mcp_status}}</span>
-            </div>
+          <td style="max-width:240px; font-size:12px; color:var(--text-muted);">${{app.description}}</td>
+          <td>${{authTags}}</td>
+          <td><span class="tag">${{app.self_serve_status}}</span></td>
+          <td style="font-size:12px; max-width:220px;">
+            <div>${{app.api_surface}}</div>
+            <div style="font-size:11px; color:var(--text-subtle); margin-top:2px;">MCP: ${{app.mcp_status}}</div>
           </td>
-          <td><span class="badge ${{verdictCls}}">${{app.buildability_verdict}}</span></td>
-          <td><div class="blocker-text">${{app.main_blocker}}</div></td>
+          <td><span class="tag ${{verdictTagCls}}">${{app.buildability_verdict}}</span></td>
+          <td style="font-size:12px; max-width:200px; color:var(--text-subtle);">${{app.main_blocker}}</td>
           <td>
-            <a href="${{app.evidence_url}}" target="_blank" rel="noopener noreferrer" class="evidence-btn">
-              Docs ↗
-            </a>
+            <a href="${{app.evidence_url}}" target="_blank" rel="noopener noreferrer" style="font-size:12px;">Docs ↗</a>
           </td>
         `;
         tbody.appendChild(tr);
       }});
 
-      document.getElementById("active-count-badge").innerText = `Showing ${{appsList.length}} of ${{APPS.length}} Apps`;
+      renderPaginationControls(startIdx, endIdx, total);
     }}
 
-    function renderAuditTable() {{
-      const tbody = document.getElementById("audit-table-body");
-      tbody.innerHTML = "";
+    function renderPaginationControls(startIdx, endIdx, total) {{
+      const paginationBar = document.getElementById("pagination-bar");
+      if (isAllExpanded || total <= pageSize) {{
+        paginationBar.style.display = "none";
+        return;
+      }}
+      paginationBar.style.display = "flex";
 
-      AUDIT.sample.forEach(item => {{
-        const tr = document.createElement("tr");
+      const totalPages = Math.ceil(total / pageSize);
+      document.getElementById("pagination-page-label").innerText = `Page ${{currentPage}} of ${{totalPages}} (${{total}} items)`;
 
-        let p1Cls = item.pass_1.status === "Correct" ? "badge-green" : "badge-rose";
+      document.getElementById("prev-page-btn").disabled = (currentPage === 1);
+      document.getElementById("next-page-btn").disabled = (currentPage === totalPages);
 
-        tr.innerHTML = `
-          <td><strong>#${{item.id}} ${{item.name}}</strong></td>
-          <td style="font-size:0.8rem; color:var(--text-muted);">${{item.category}}</td>
-          <td>
-            <span class="badge ${{p1Cls}}">${{item.pass_1.status}}</span>
-            <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:4px;">${{item.pass_1.notes}}</div>
-          </td>
-          <td>
-            <div style="font-size:0.8rem; line-height:1.35; color:#93c5fd;">
-              <strong>${{item.pass_2.status}}:</strong> ${{item.pass_2.mechanism}}
-            </div>
-          </td>
-          <td>
-            <div style="font-size:0.8rem; line-height:1.35; color:#86efac;">
-              ${{item.pass_3.human_action}}
-            </div>
-          </td>
-          <td>
-            <span class="badge badge-green">${{item.final_data.verdict}}</span>
-            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">${{item.final_data.accessibility}}</div>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      }});
+      const pillsContainer = document.getElementById("page-pills");
+      pillsContainer.innerHTML = "";
+
+      // Limit page buttons for clean layout
+      const maxButtons = 5;
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+      if (endPage - startPage < maxButtons - 1) {{
+        startPage = Math.max(1, endPage - maxButtons + 1);
+      }}
+
+      for (let p = startPage; p <= endPage; p++) {{
+        const btn = document.createElement("button");
+        btn.className = "page-btn";
+        btn.innerText = p;
+        if (p === currentPage) {{
+          btn.style.background = "var(--border-strong)";
+          btn.style.color = "#ffffff";
+          btn.style.fontWeight = "600";
+        }}
+        btn.onclick = () => {{
+          currentPage = p;
+          renderTable();
+        }};
+        pillsContainer.appendChild(btn);
+      }}
     }}
 
-    function filterApps() {{
+    function navigatePage(delta) {{
+      const totalPages = Math.ceil(filteredApps.length / pageSize);
+      currentPage = Math.max(1, Math.min(totalPages, currentPage + delta));
+      renderTable();
+    }}
+
+    function changeBatchSize() {{
+      const sel = document.getElementById("batch-size-select").value;
+      if (sel === "100") {{
+        isAllExpanded = true;
+        document.getElementById("expand-text").innerText = "Show Paginated";
+        document.getElementById("expand-arrow").innerText = "▲";
+      }} else {{
+        pageSize = parseInt(sel, 10);
+        isAllExpanded = false;
+        document.getElementById("expand-text").innerText = "Show All 100";
+        document.getElementById("expand-arrow").innerText = "▼";
+      }}
+      currentPage = 1;
+      renderTable();
+    }}
+
+    function toggleExpandAll() {{
+      isAllExpanded = !isAllExpanded;
+      if (isAllExpanded) {{
+        document.getElementById("expand-text").innerText = "Show First 8";
+        document.getElementById("expand-arrow").innerText = "▲";
+        document.getElementById("batch-size-select").value = "100";
+      }} else {{
+        document.getElementById("expand-text").innerText = "Show All 100";
+        document.getElementById("expand-arrow").innerText = "▼";
+        pageSize = 8;
+        document.getElementById("batch-size-select").value = "8";
+      }}
+      currentPage = 1;
+      renderTable();
+    }}
+
+    function handleFilterChange() {{
       const query = document.getElementById("search-input").value.toLowerCase();
       const cat = document.getElementById("category-filter").value;
       const verdict = document.getElementById("verdict-filter").value;
       const auth = document.getElementById("auth-filter").value;
-      const access = document.getElementById("accessibility-filter").value;
+      const access = document.getElementById("access-filter").value;
 
-      const filtered = APPS.filter(app => {{
+      filteredApps = APPS.filter(app => {{
         const matchesQuery = 
           app.name.toLowerCase().includes(query) ||
           app.category.toLowerCase().includes(query) ||
@@ -1343,9 +1297,7 @@ python3 scripts/analyze_patterns.py</code>
 
         const matchesCat = (cat === "ALL" || app.category === cat);
         const matchesVerdict = (verdict === "ALL" || app.buildability_verdict === verdict);
-        
-        const matchesAuth = (auth === "ALL" || 
-          app.auth_methods.some(m => m.toLowerCase().includes(auth.toLowerCase())));
+        const matchesAuth = (auth === "ALL" || app.auth_methods.some(m => m.toLowerCase().includes(auth.toLowerCase())));
 
         const matchesAccess = (access === "ALL" ||
           (access === "Self-Serve" && (app.self_serve_status.includes("Self-Serve") || app.self_serve_status.includes("Free"))) ||
@@ -1354,7 +1306,37 @@ python3 scripts/analyze_patterns.py</code>
         return matchesQuery && matchesCat && matchesVerdict && matchesAuth && matchesAccess;
       }});
 
-      renderTable(filtered);
+      currentPage = 1;
+      renderTable();
+    }}
+
+    function renderAuditTable() {{
+      const tbody = document.getElementById("audit-table-body");
+      tbody.innerHTML = "";
+
+      AUDIT.sample.forEach(item => {{
+        const tr = document.createElement("tr");
+
+        let p1Cls = item.pass_1.status === "Correct" ? "tag-ready" : "tag-blocked";
+
+        tr.innerHTML = `
+          <td><strong>#${{item.id}} ${{item.name}}</strong></td>
+          <td style="font-size:12px; color:var(--text-subtle);">${{item.category}}</td>
+          <td>
+            <span class="tag ${{p1Cls}}">${{item.pass_1.status}}</span>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">${{item.pass_1.notes}}</div>
+          </td>
+          <td style="font-size:12px; color:var(--text-main);">
+            <strong>${{item.pass_2.status}}:</strong> ${{item.pass_2.mechanism}}
+          </td>
+          <td style="font-size:12px; color:var(--text-muted);">${{item.pass_3.human_action}}</td>
+          <td>
+            <span class="tag tag-ready">${{item.final_data.verdict}}</span>
+            <div style="font-size:11px; color:var(--text-subtle); margin-top:2px;">${{item.final_data.accessibility}}</div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }});
     }}
 
     function openDrawer(appId) {{
@@ -1363,46 +1345,51 @@ python3 scripts/analyze_patterns.py</code>
 
       const content = document.getElementById("drawer-content");
       content.innerHTML = `
-        <div style="margin-bottom:24px;">
-          <span class="brand-badge">${{app.category}}</span>
-          <h2 style="font-size:1.8rem; color:#fff; margin-top:8px;">#${{app.id}} ${{app.name}}</h2>
-          <p style="color:var(--text-secondary); margin-top:6px; font-size:0.95rem;">${{app.description}}</p>
+        <div style="margin-bottom:20px;">
+          <div style="font-family:var(--font-code); font-size:11px; color:var(--text-subtle); text-transform:uppercase;">Application Specification</div>
+          <h2 style="font-size:20px; font-weight:600; color:#fff; margin-top:4px;">#${{app.id}} ${{app.name}}</h2>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Vertical: ${{app.category}}</div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:20px;">
-          <div style="background:var(--bg-secondary); padding:16px; border-radius:8px; border:1px solid var(--border-color);">
-            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Buildability Verdict</div>
-            <div style="font-size:1.1rem; font-weight:700; color:#ffffff; margin-top:4px;">${{app.buildability_verdict}}</div>
-            <div style="font-size:0.85rem; color:var(--text-secondary); margin-top:6px;">${{app.main_blocker}}</div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle);">Buildability Verdict</div>
+            <div style="font-weight:600; font-size:14px; color:#fff; margin-top:2px;">${{app.buildability_verdict}}</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${{app.main_blocker}}</div>
           </div>
 
           <div>
-            <h4 style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Authentication Matrix</h4>
-            <div>${{app.auth_methods.map(m => `<span class="badge badge-purple" style="font-size:0.85rem; padding:6px 10px;">${{m}}</span>`).join(" ")}}</div>
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:6px;">Technical Function</div>
+            <p style="font-size:13px; color:var(--text-main);">${{app.description}}</p>
           </div>
 
           <div>
-            <h4 style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Developer Accessibility</h4>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">${{app.self_serve_vs_gated}}</p>
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:6px;">Authentication Schemes</div>
+            <div>${{app.auth_methods.map(m => `<span class="tag" style="font-size:12px;">${{m}}</span>`).join(" ")}}</div>
           </div>
 
           <div>
-            <h4 style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">API Surface & Architecture</h4>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">${{app.api_surface}}</p>
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:4px;">Developer Onboarding Access</div>
+            <p style="font-size:13px; color:var(--text-muted);">${{app.self_serve_vs_gated}}</p>
           </div>
 
           <div>
-            <h4 style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:6px;">Model Context Protocol (MCP) Readiness</h4>
-            <p style="color:var(--text-secondary); font-size:0.9rem;">${{app.mcp_status}}</p>
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:4px;">API Surface Architecture</div>
+            <p style="font-size:13px; color:var(--text-muted);">${{app.api_surface}}</p>
           </div>
 
-          <div style="background:rgba(6, 182, 212, 0.08); border-left:3px solid var(--accent-cyan); padding:16px; border-radius:0 8px 8px 0;">
-            <div style="font-size:0.8rem; font-weight:700; color:var(--accent-cyan); text-transform:uppercase;">Composio Toolkit Strategy</div>
-            <p style="color:var(--text-primary); font-size:0.9rem; margin-top:6px;">${{app.composio_fit}}</p>
+          <div>
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:4px;">Model Context Protocol (MCP) Readiness</div>
+            <p style="font-size:13px; color:var(--text-muted);">${{app.mcp_status}}</p>
           </div>
 
-          <div style="margin-top:10px;">
-            <a href="${{app.evidence_url}}" target="_blank" rel="noopener noreferrer" class="evidence-btn" style="padding:10px 18px; font-size:0.88rem; width:100%; justify-content:center;">
+          <div style="background:var(--bg-base); padding:14px; border-left:2px solid var(--border-strong); border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+            <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle);">Composio Integration Strategy</div>
+            <p style="font-size:12px; color:var(--text-main); margin-top:4px;">${{app.composio_fit}}</p>
+          </div>
+
+          <div style="margin-top:8px;">
+            <a href="${{app.evidence_url}}" target="_blank" rel="noopener noreferrer" class="page-btn" style="display:block; text-align:center; padding:8px 0; text-decoration:none;">
               Open Official Documentation Portal ↗
             </a>
           </div>
@@ -1423,13 +1410,12 @@ python3 scripts/analyze_patterns.py</code>
       if (el) {{
         el.scrollIntoView({{ behavior: "smooth" }});
       }}
-      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".nav-item").forEach(btn => btn.classList.remove("active"));
       event.target.classList.add("active");
     }}
 
-    // Initial render
     window.onload = function() {{
-      renderTable(APPS);
+      renderTable();
       renderAuditTable();
     }};
   </script>
@@ -1439,7 +1425,7 @@ python3 scripts/analyze_patterns.py</code>
 
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("Successfully generated standalone index.html")
+    print("Successfully generated revised index.html (Anti-AI Taste Skill + ASD-STE100 + Pagination Batching)")
 
 if __name__ == "__main__":
     generate()
