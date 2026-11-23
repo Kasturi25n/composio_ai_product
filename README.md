@@ -1,8 +1,9 @@
 # Composio AI Product Ops: 100-App Agent Integration Landscape & Discovery Engine
 
 > **Take-Home Assignment for AI Product Ops Intern at Composio**  
-> **Author:** Candidate  
-> **Deliverable:** Live Case Study & Interactive 100-App Research Matrix  
+> **Author:** Kasturi25n  
+> **Live Deployed Case Study:** [https://kasturi25n.github.io/composio-ai-product-ops/](https://kasturi25n.github.io/composio-ai-product-ops/)  
+> **Source Repository:** [https://github.com/Kasturi25n/composio-ai-product-ops](https://github.com/Kasturi25n/composio-ai-product-ops)  
 > **Artifacts:** `index.html` (Standalone Dashboard), `data/apps_dataset.json`, `data/apps_dataset.csv`, `data/verification_sample.json`, `scripts/` (Automated Pipeline & Verification Engine)
 
 ---
