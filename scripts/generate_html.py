@@ -1,11 +1,12 @@
 """
 Generates the revised, high-taste, anti-AI, ASD-STE100 compliant standalone HTML Case Study.
-Implements:
-- Strict ASD-STE100 (Simplified Technical English) language structure
-- Taste Skill & Unslop design principles (restrained typography, no neon gradients, no AI clichés)
+Features:
+- Full Light Mode and Dark Mode support with persistence and interactive toggle button
+- Justified typography across all prose and technical descriptions
+- ASD-STE100 (Simplified Technical English) language standard
 - Table batching: Default first 8 entries, dropdown for 8/10/20/50/100, expand/collapse arrow
 - "Showing X of 100" counter located directly in the filter toolbar
-- Clean Linear/Stripe-inspired dark interface with high information density
+- Clean Linear/Stripe-inspired interface with high information density
 """
 
 import json
@@ -26,7 +27,7 @@ def generate():
     verification_json_str = json.dumps(verification, ensure_ascii=False)
 
     html_content = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,6 +49,8 @@ def generate():
       --text-subtle: #6b7280;
       --accent: #3b82f6;
       --accent-soft: rgba(59, 130, 246, 0.12);
+      --code-bg: #08090c;
+      --code-text: #e5e7eb;
       --status-ready: #10b981;
       --status-ready-bg: rgba(16, 185, 129, 0.1);
       --status-ready-border: rgba(16, 185, 129, 0.25);
@@ -64,6 +67,32 @@ def generate():
       --radius-lg: 12px;
     }}
 
+    [data-theme="light"] {{
+      --bg-base: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-raised: #f1f5f9;
+      --bg-surface-hover: #e2e8f0;
+      --border-subtle: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-focus: #94a3b8;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.08);
+      --code-bg: #1e293b;
+      --code-text: #f8fafc;
+      --status-ready: #059669;
+      --status-ready-bg: rgba(5, 150, 105, 0.08);
+      --status-ready-border: rgba(5, 150, 105, 0.25);
+      --status-caveat: #d97706;
+      --status-caveat-bg: rgba(217, 119, 6, 0.08);
+      --status-caveat-border: rgba(217, 119, 6, 0.25);
+      --status-blocked: #dc2626;
+      --status-blocked-bg: rgba(220, 38, 38, 0.08);
+      --status-blocked-border: rgba(220, 38, 38, 0.25);
+    }}
+
     * {{
       box-sizing: border-box;
       margin: 0;
@@ -74,9 +103,10 @@ def generate():
       font-family: var(--font-body);
       background-color: var(--bg-base);
       color: var(--text-main);
-      line-height: 1.5;
+      line-height: 1.55;
       font-size: 14px;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }}
 
     a {{
@@ -105,6 +135,7 @@ def generate():
       position: sticky;
       top: 0;
       z-index: 50;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }}
 
     .header-content {{
@@ -134,24 +165,27 @@ def generate():
     h1 {{
       font-size: 24px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
       letter-spacing: -0.02em;
       margin-bottom: 6px;
     }}
 
+    /* Justified text styling */
     .subtitle {{
       color: var(--text-muted);
       font-size: 14px;
-      max-width: 820px;
-      line-height: 1.5;
+      max-width: 840px;
+      line-height: 1.6;
+      text-align: justify;
     }}
 
     .nav-strip {{
       display: flex;
-      gap: 4px;
+      gap: 6px;
       border-top: 1px solid var(--border-subtle);
       padding-top: 12px;
       overflow-x: auto;
+      align-items: center;
     }}
 
     .nav-item {{
@@ -173,9 +207,30 @@ def generate():
     }}
 
     .nav-item.active {{
-      color: #ffffff;
+      color: var(--text-main);
       background: var(--bg-surface-raised);
       border-color: var(--border-strong);
+    }}
+
+    .theme-toggle-btn {{
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-surface-raised);
+      border: 1px solid var(--border-strong);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-code);
+      transition: background 0.15s ease;
+    }}
+
+    .theme-toggle-btn:hover {{
+      background: var(--bg-surface-hover);
     }}
 
     /* Metrics Grid */
@@ -218,7 +273,7 @@ def generate():
       font-family: var(--font-code);
       font-size: 26px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
       line-height: 1.1;
       margin-bottom: 4px;
     }}
@@ -245,7 +300,7 @@ def generate():
     .section-title {{
       font-size: 18px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
       letter-spacing: -0.01em;
     }}
 
@@ -253,6 +308,7 @@ def generate():
       font-size: 13px;
       color: var(--text-muted);
       margin-top: 2px;
+      text-align: justify;
     }}
 
     /* Patterns Grid */
@@ -295,14 +351,16 @@ def generate():
     .pattern-heading {{
       font-size: 15px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
     }}
 
+    /* Text justification */
     .pattern-body {{
       color: var(--text-muted);
       font-size: 13px;
       line-height: 1.6;
       margin-bottom: 16px;
+      text-align: justify;
     }}
 
     .pattern-body ul {{
@@ -312,6 +370,7 @@ def generate():
 
     .pattern-body li {{
       margin-bottom: 6px;
+      text-align: justify;
     }}
 
     .pattern-callout {{
@@ -321,6 +380,7 @@ def generate():
       font-size: 12px;
       color: var(--text-main);
       line-height: 1.5;
+      text-align: justify;
     }}
 
     /* Table Toolbar & Pagination Header */
@@ -343,7 +403,6 @@ def generate():
       gap: 12px;
     }}
 
-    /* Key Requirement: "showing x of 100 near the filters, not near the ending" */
     .status-counter-badge {{
       display: inline-flex;
       align-items: center;
@@ -355,7 +414,7 @@ def generate():
       font-family: var(--font-code);
       font-size: 12px;
       font-weight: 500;
-      color: #ffffff;
+      color: var(--text-main);
     }}
 
     .status-counter-badge span.accent {{
@@ -375,7 +434,7 @@ def generate():
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
       padding: 7px 12px;
-      color: #ffffff;
+      color: var(--text-main);
       font-size: 13px;
       width: 260px;
       outline: none;
@@ -459,7 +518,7 @@ def generate():
       border-bottom: 1px solid var(--border-subtle);
       color: var(--text-muted);
       vertical-align: top;
-      line-height: 1.4;
+      line-height: 1.45;
     }}
 
     tr:hover td {{
@@ -482,7 +541,7 @@ def generate():
 
     .app-name {{
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
       font-size: 13px;
       cursor: pointer;
     }}
@@ -497,7 +556,21 @@ def generate():
       color: var(--text-subtle);
     }}
 
-    /* Clean, non-neon pill tags */
+    .desc-cell {{
+      max-width: 240px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: justify;
+    }}
+
+    .blocker-cell {{
+      font-size: 12px;
+      max-width: 200px;
+      color: var(--text-subtle);
+      text-align: justify;
+    }}
+
+    /* Clean badges */
     .tag {{
       display: inline-block;
       padding: 2px 7px;
@@ -602,25 +675,26 @@ def generate():
       font-family: var(--font-code);
       font-size: 24px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-main);
       margin-bottom: 6px;
     }}
 
     .audit-step-desc {{
       font-size: 12px;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.5;
+      text-align: justify;
     }}
 
     /* Code Block */
     .code-panel {{
-      background: #08090c;
+      background: var(--code-bg);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 16px 20px;
       font-family: var(--font-code);
       font-size: 12px;
-      color: #e5e7eb;
+      color: var(--code-text);
       overflow-x: auto;
       line-height: 1.6;
     }}
@@ -630,7 +704,7 @@ def generate():
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(2px);
       z-index: 100;
     }}
@@ -672,7 +746,7 @@ def generate():
     }}
 
     .drawer-close-btn:hover {{
-      color: #ffffff;
+      color: var(--text-main);
     }}
 
     footer {{
@@ -709,7 +783,7 @@ def generate():
         </div>
       </div>
 
-      <!-- Navigation Bar -->
+      <!-- Navigation Bar with Light/Dark Mode Toggle -->
       <nav class="nav-strip">
         <button class="nav-item active" onclick="scrollToSection('summary')">Summary Findings</button>
         <button class="nav-item" onclick="scrollToSection('patterns')">Pattern Analysis</button>
@@ -717,6 +791,12 @@ def generate():
         <button class="nav-item" onclick="scrollToSection('agent')">Pipeline Architecture</button>
         <button class="nav-item" onclick="scrollToSection('verification')">Verification Audit</button>
         <button class="nav-item" onclick="scrollToSection('code')">Execution & Scripts</button>
+
+        <!-- Interactive Theme Switch Button -->
+        <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()">
+          <span id="theme-icon">☼</span>
+          <span id="theme-label">Light Mode</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -754,7 +834,7 @@ def generate():
       </div>
     </section>
 
-    <!-- Section 1: Executive Patterns (ASD-STE100 Technical Prose) -->
+    <!-- Section 1: Executive Patterns (Justified ASD-STE100 Technical Prose) -->
     <section id="patterns">
       <div class="section-header">
         <div>
@@ -865,7 +945,6 @@ def generate():
       <!-- Table Toolbar -->
       <div class="table-toolbar">
         <div class="toolbar-top-row">
-          <!-- Required Counter: "showing x of 100 near the filters, not near the ending" -->
           <div class="status-counter-badge" id="table-counter-display">
             Showing <span class="accent" id="count-range">1–8</span> of <span class="accent" id="count-total">100</span> applications
           </div>
@@ -982,28 +1061,28 @@ def generate():
         <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:12px; margin-bottom: 24px;">
           <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 01</div>
-            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Seed Input</div>
-            <div style="font-size:11px; color:var(--text-muted);">Ingests application name, sector, and documentation URL.</div>
+            <div style="font-weight:600; font-size:12px; color:var(--text-main); margin:4px 0;">Seed Input</div>
+            <div style="font-size:11px; color:var(--text-muted); text-align:justify;">Ingests application name, sector, and documentation URL.</div>
           </div>
           <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 02</div>
-            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Doc Extraction</div>
-            <div style="font-size:11px; color:var(--text-muted);">Scrapes developer documentation and OpenAPI schemas.</div>
+            <div style="font-weight:600; font-size:12px; color:var(--text-main); margin:4px 0;">Doc Extraction</div>
+            <div style="font-size:11px; color:var(--text-muted); text-align:justify;">Scrapes developer documentation and OpenAPI schemas.</div>
           </div>
           <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 03</div>
-            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Schema Parse</div>
-            <div style="font-size:11px; color:var(--text-muted);">Extracts authentication schemes and pricing rules.</div>
+            <div style="font-weight:600; font-size:12px; color:var(--text-main); margin:4px 0;">Schema Parse</div>
+            <div style="font-size:11px; color:var(--text-muted); text-align:justify;">Extracts authentication schemes and pricing rules.</div>
           </div>
           <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 04</div>
-            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">Verification</div>
-            <div style="font-size:11px; color:var(--text-muted);">Checks link HTTP codes and validates rule consistency.</div>
+            <div style="font-weight:600; font-size:12px; color:var(--text-main); margin:4px 0;">Verification</div>
+            <div style="font-size:11px; color:var(--text-muted); text-align:justify;">Checks link HTTP codes and validates rule consistency.</div>
           </div>
           <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-family:var(--font-code); font-size:10px; color:var(--text-subtle);">STAGE 05</div>
-            <div style="font-weight:600; font-size:12px; color:#fff; margin:4px 0;">HITL Triage</div>
-            <div style="font-size:11px; color:var(--text-muted);">Escalates paywalls and enterprise gates to human operators.</div>
+            <div style="font-weight:600; font-size:12px; color:var(--text-main); margin:4px 0;">HITL Triage</div>
+            <div style="font-size:11px; color:var(--text-muted); text-align:justify;">Escalates paywalls and enterprise gates to human operators.</div>
           </div>
         </div>
 
@@ -1011,19 +1090,19 @@ def generate():
           <div style="background:var(--bg-base); padding:18px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-weight:600; font-size:13px; color:var(--status-ready); margin-bottom:8px;">Autonomous Agent Execution (85% of Operations)</div>
             <ul style="margin-left:18px; font-size:12px; color:var(--text-muted); line-height:1.6;">
-              <li>Discovers official documentation portals and downloads API specifications.</li>
-              <li>Extracts header parameters, authorization schemes, and endpoint counts.</li>
-              <li>Queries Model Context Protocol registries for existing server implementations.</li>
-              <li>Executes HTTP HEAD requests to confirm documentation URLs return status 200.</li>
+              <li style="text-align:justify;">Discovers official documentation portals and downloads API specifications.</li>
+              <li style="text-align:justify;">Extracts header parameters, authorization schemes, and endpoint counts.</li>
+              <li style="text-align:justify;">Queries Model Context Protocol registries for existing server implementations.</li>
+              <li style="text-align:justify;">Executes HTTP HEAD requests to confirm documentation URLs return status 200.</li>
             </ul>
           </div>
           <div style="background:var(--bg-base); padding:18px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-weight:600; font-size:13px; color:var(--status-caveat); margin-bottom:8px;">Human Review Requirements (15% of Operations)</div>
             <ul style="margin-left:18px; font-size:12px; color:var(--text-muted); line-height:1.6;">
-              <li>Corporate Rebranding: Verified that FanBasis migrated checkout operations to Commas (`commas.com`).</li>
-              <li>Closed Tenant Portals: Verified that DealCloud requires active tenant authorization for API access.</li>
-              <li>Product Architecture: Verified that NotebookLM consumer web interface has no public API and requires Google Cloud Vertex AI.</li>
-              <li>Multi-Signature Handshakes: Confirmed Amazon SP-API requires both LWA OAuth and AWS SigV4 signing.</li>
+              <li style="text-align:justify;">Corporate Rebranding: Verified that FanBasis migrated checkout operations to Commas (`commas.com`).</li>
+              <li style="text-align:justify;">Closed Tenant Portals: Verified that DealCloud requires active tenant authorization for API access.</li>
+              <li style="text-align:justify;">Product Architecture: Verified that NotebookLM consumer web interface has no public API and requires Google Cloud Vertex AI.</li>
+              <li style="text-align:justify;">Multi-Signature Handshakes: Confirmed Amazon SP-API requires both LWA OAuth and AWS SigV4 signing.</li>
             </ul>
           </div>
         </div>
@@ -1134,9 +1213,36 @@ python3 scripts/analyze_patterns.py
     const AUDIT = {verification_json_str};
 
     let currentPage = 1;
-    let pageSize = 8; // Default first 8 entries as requested
+    let pageSize = 8; // Default first 8 entries
     let filteredApps = [...APPS];
     let isAllExpanded = false;
+
+    // Theme Management (Light / Dark mode toggle with persistence)
+    function initTheme() {{
+      const savedTheme = localStorage.getItem("composio-theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      updateThemeButton(savedTheme);
+    }}
+
+    function toggleTheme() {{
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("composio-theme", next);
+      updateThemeButton(next);
+    }}
+
+    function updateThemeButton(theme) {{
+      const icon = document.getElementById("theme-icon");
+      const label = document.getElementById("theme-label");
+      if (theme === "light") {{
+        icon.innerText = "☾";
+        label.innerText = "Dark Mode";
+      }} else {{
+        icon.innerText = "☼";
+        label.innerText = "Light Mode";
+      }}
+    }}
 
     function renderTable() {{
       const tbody = document.getElementById("table-body");
@@ -1153,7 +1259,7 @@ python3 scripts/analyze_patterns.py
 
       const pageItems = filteredApps.slice(startIdx, endIdx);
 
-      // Key Requirement: Update "showing x of 100 near the filters, not near the ending"
+      // Counter placement: near filters up top
       const counterRange = document.getElementById("count-range");
       const counterTotal = document.getElementById("count-total");
       
@@ -1181,7 +1287,7 @@ python3 scripts/analyze_patterns.py
               <span class="app-category">${{app.category}}</span>
             </div>
           </td>
-          <td style="max-width:240px; font-size:12px; color:var(--text-muted);">${{app.description}}</td>
+          <td class="desc-cell">${{app.description}}</td>
           <td>${{authTags}}</td>
           <td><span class="tag">${{app.self_serve_status}}</span></td>
           <td style="font-size:12px; max-width:220px;">
@@ -1189,7 +1295,7 @@ python3 scripts/analyze_patterns.py
             <div style="font-size:11px; color:var(--text-subtle); margin-top:2px;">MCP: ${{app.mcp_status}}</div>
           </td>
           <td><span class="tag ${{verdictTagCls}}">${{app.buildability_verdict}}</span></td>
-          <td style="font-size:12px; max-width:200px; color:var(--text-subtle);">${{app.main_blocker}}</td>
+          <td class="blocker-cell">${{app.main_blocker}}</td>
           <td>
             <a href="${{app.evidence_url}}" target="_blank" rel="noopener noreferrer" style="font-size:12px;">Docs ↗</a>
           </td>
@@ -1217,7 +1323,6 @@ python3 scripts/analyze_patterns.py
       const pillsContainer = document.getElementById("page-pills");
       pillsContainer.innerHTML = "";
 
-      // Limit page buttons for clean layout
       const maxButtons = 5;
       let startPage = Math.max(1, currentPage - 2);
       let endPage = Math.min(totalPages, startPage + maxButtons - 1);
@@ -1231,7 +1336,7 @@ python3 scripts/analyze_patterns.py
         btn.innerText = p;
         if (p === currentPage) {{
           btn.style.background = "var(--border-strong)";
-          btn.style.color = "#ffffff";
+          btn.style.color = "var(--text-main)";
           btn.style.fontWeight = "600";
         }}
         btn.onclick = () => {{
@@ -1324,12 +1429,12 @@ python3 scripts/analyze_patterns.py
           <td style="font-size:12px; color:var(--text-subtle);">${{item.category}}</td>
           <td>
             <span class="tag ${{p1Cls}}">${{item.pass_1.status}}</span>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">${{item.pass_1.notes}}</div>
+            <div style="font-size:11px; color:var(--text-muted); margin-top:4px; text-align:justify;">${{item.pass_1.notes}}</div>
           </td>
-          <td style="font-size:12px; color:var(--text-main);">
+          <td style="font-size:12px; color:var(--text-main); text-align:justify;">
             <strong>${{item.pass_2.status}}:</strong> ${{item.pass_2.mechanism}}
           </td>
-          <td style="font-size:12px; color:var(--text-muted);">${{item.pass_3.human_action}}</td>
+          <td style="font-size:12px; color:var(--text-muted); text-align:justify;">${{item.pass_3.human_action}}</td>
           <td>
             <span class="tag tag-ready">${{item.final_data.verdict}}</span>
             <div style="font-size:11px; color:var(--text-subtle); margin-top:2px;">${{item.final_data.accessibility}}</div>
@@ -1347,20 +1452,20 @@ python3 scripts/analyze_patterns.py
       content.innerHTML = `
         <div style="margin-bottom:20px;">
           <div style="font-family:var(--font-code); font-size:11px; color:var(--text-subtle); text-transform:uppercase;">Application Specification</div>
-          <h2 style="font-size:20px; font-weight:600; color:#fff; margin-top:4px;">#${{app.id}} ${{app.name}}</h2>
+          <h2 style="font-size:20px; font-weight:600; color:var(--text-main); margin-top:4px;">#${{app.id}} ${{app.name}}</h2>
           <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">Vertical: ${{app.category}}</div>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:16px;">
           <div style="background:var(--bg-base); padding:14px; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
             <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle);">Buildability Verdict</div>
-            <div style="font-weight:600; font-size:14px; color:#fff; margin-top:2px;">${{app.buildability_verdict}}</div>
-            <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${{app.main_blocker}}</div>
+            <div style="font-weight:600; font-size:14px; color:var(--text-main); margin-top:2px;">${{app.buildability_verdict}}</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:4px; text-align:justify;">${{app.main_blocker}}</div>
           </div>
 
           <div>
             <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:6px;">Technical Function</div>
-            <p style="font-size:13px; color:var(--text-main);">${{app.description}}</p>
+            <p style="font-size:13px; color:var(--text-main); text-align:justify;">${{app.description}}</p>
           </div>
 
           <div>
@@ -1370,22 +1475,22 @@ python3 scripts/analyze_patterns.py
 
           <div>
             <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:4px;">Developer Onboarding Access</div>
-            <p style="font-size:13px; color:var(--text-muted);">${{app.self_serve_vs_gated}}</p>
+            <p style="font-size:13px; color:var(--text-muted); text-align:justify;">${{app.self_serve_vs_gated}}</p>
           </div>
 
           <div>
             <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:4px;">API Surface Architecture</div>
-            <p style="font-size:13px; color:var(--text-muted);">${{app.api_surface}}</p>
+            <p style="font-size:13px; color:var(--text-muted); text-align:justify;">${{app.api_surface}}</p>
           </div>
 
           <div>
             <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle); margin-bottom:4px;">Model Context Protocol (MCP) Readiness</div>
-            <p style="font-size:13px; color:var(--text-muted);">${{app.mcp_status}}</p>
+            <p style="font-size:13px; color:var(--text-muted); text-align:justify;">${{app.mcp_status}}</p>
           </div>
 
           <div style="background:var(--bg-base); padding:14px; border-left:2px solid var(--border-strong); border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
             <div style="font-size:11px; text-transform:uppercase; font-weight:600; color:var(--text-subtle);">Composio Integration Strategy</div>
-            <p style="font-size:12px; color:var(--text-main); margin-top:4px;">${{app.composio_fit}}</p>
+            <p style="font-size:12px; color:var(--text-main); margin-top:4px; text-align:justify;">${{app.composio_fit}}</p>
           </div>
 
           <div style="margin-top:8px;">
@@ -1415,6 +1520,7 @@ python3 scripts/analyze_patterns.py
     }}
 
     window.onload = function() {{
+      initTheme();
       renderTable();
       renderAuditTable();
     }};
@@ -1425,7 +1531,7 @@ python3 scripts/analyze_patterns.py
 
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("Successfully generated revised index.html (Anti-AI Taste Skill + ASD-STE100 + Pagination Batching)")
+    print("Successfully regenerated index.html with Light Mode toggle and justified prose text.")
 
 if __name__ == "__main__":
     generate()
